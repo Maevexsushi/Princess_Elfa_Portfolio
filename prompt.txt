@@ -1,0 +1,377 @@
+CLAUDE CODE PORTFOLIO PROMPT
+Create a production-ready portfolio website for Princess Mae D. Elfa, a Full Stack Developer and IT
+professional from the Philippines.
+Build the portfolio using React, Next.js, or Astro with a modern, professional, and mobile-first design that
+highlights web development, AI integration, and IT support experience.
+Include:
+Responsive project showcase
+Experience timeline
+Technical skills section
+AI-focused projects
+Resume download
+Contact section
+SEO optimization
+Accessible HTML and keyboard-friendly navigation
+1. HERO SECTION
+Headline: "Hi, I'm Princess Mae D. Elfa"
+Animated typing effect displaying:
+Full Stack Developer
+AI Web Developer
+IT Professional
+Problem Solver
+Intro paragraph:
+"I'm a Full Stack Developer with experience building web applications using JavaScript, PHP, and MySQL. I
+specialize in AI-powered solutions, system optimization, and creating reliable user-focused applications that
+improve business processes."
+CTA Buttons:
+View Projects
+Download Resume
+Contact Me
+Social Links:
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+1
+GitHub
+LinkedIn
+Email
+Include terminal-style UI elements or animated code snippets for a developer aesthetic.
+2. ABOUT SECTION
+Include:
+Professional Summary
+Location: Philippines
+Education:
+Bachelor of Science in Information Technology
+Bulacan State University Meneses (2022–2026)
+Cum Laude Graduate
+Thesis Highlight:
+DermaSculpt: Dermatology AI Clinic Support System
+Short description:
+"Passionate about combining AI and web technologies to solve real-world business problems while
+maintaining clean, scalable, and user-friendly applications."
+Include a tech stack visualization.
+Add key statistics:
+2+ years of web development experience
+AI-powered systems developed
+Internship experience in government systems
+Cum Laude graduate
+3. SKILLS SECTION
+Display skills as icon cards or badges instead of progress bars.
+Programming Languages
+JavaScript
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+2
+TypeScript
+PHP
+SQL
+Frontend Development
+Next.js
+HTML
+CSS
+Responsive Design
+Backend Development
+PHP
+MySQL
+REST APIs
+AI & Development Tools
+ChatGPT
+Claude
+Gemini
+Cursor AI
+Tools & Technologies
+Git
+GitHub
+VS Code
+Hosting & Deployment
+IT Support Skills
+Computer Troubleshooting
+System Setup & Configuration
+Software Installation
+Technical Support
+Productivity Tools
+Microsoft Word
+Microsoft Excel
+Google Workspace
+PDF Tools
+Soft Skills
+Problem Solving
+Critical Thinking
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+3
+Time Management
+Project Management
+4. PROJECTS SECTION
+Feature 3–4 major projects.
+Featured Project #1
+DermaSculpt — AI Dermatology Clinic Support System
+AI-powered clinic support platform
+Improved response times by 30%
+Technologies:
+JavaScript
+PHP
+MySQL
+AI APIs
+Include screenshots, architecture overview, and business outcomes.
+Featured Project #2
+Clinic Customer Support Automation
+AI-powered customer inquiry management system.
+Streamlined support workflows and improved customer experience.
+Featured Project #3
+Land Administration Support Tools
+Based on work completed during DENR internship.
+Focus on document retrieval improvements and digital record management.
+Featured Project #4
+Personal Portfolio Website
+Built using Next.js.
+Optimized for performance, SEO, and responsiveness.
+Project Cards should include:
+Project image
+Description
+Technology tags
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+4
+GitHub repository link
+Live demo link
+Business impact metrics
+Case study link
+Hover effect:
+Slight lift animation
+Soft shadow
+Smooth transition
+5. EXPERIENCE TIMELINE
+Freelance Full Stack Developer
+June 2024 – February 2026
+Developed AI-powered support systems.
+Built and maintained web applications using PHP, JavaScript, and MySQL.
+Integrated AI features into business workflows.
+Reduced issues and maintenance requests by 15%.
+Department of Environment and Natural Resources (DENR) — IT Intern
+December 2025 – April 2026
+Worked with Land Administration and Management System (LAMS).
+Improved document retrieval efficiency by 15%.
+Assisted with system testing and validation.
+Provided technical support and troubleshooting.
+Installed and configured software and hardware systems.
+Display using a vertical timeline design.
+6. CASE STUDY PAGES
+Create dedicated pages for major projects.
+Each case study should include:
+Project Overview
+Business Problem
+User Requirements
+Technical Challenges
+Architecture Diagram Area
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+5
+Screenshots
+Technologies Used
+Development Process
+Results and Metrics
+Lessons Learned
+7. EDUCATION SECTION
+Display as timeline or cards:
+Bulacan State University Meneses
+Bachelor of Science in Information Technology 2022 – 2026 Cum Laude
+Sta. Maria National High School / Dr. Yanga's Colleges Incorporated
+Information and Communications Technology 2015 – 2019
+8. CONTACT SECTION
+Headline:
+"Interested in working together?"
+Include:
+Email address
+Contact form
+GitHub profile
+LinkedIn profile
+Suggested CTA:
+"I'm currently open to freelance opportunities, web development projects, AI integrations, and full-time
+opportunities."
+Expected response time:
+Within 24 hours
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+6
+9. CLAUDE CODE IMPLEMENTATION NOTES
+Create reusable components:
+HeroSection
+AboutSection
+SkillsGrid
+ProjectGrid
+ProjectCard
+CaseStudyPage
+ExperienceTimeline
+EducationTimeline
+ContactSection
+Implementation requirements:
+Mobile-first responsive design
+Dark mode support
+SEO metadata
+Image optimization
+Fast loading performance
+Accessible semantic HTML
+Keyboard navigation support
+Use placeholder JSON data arrays for:
+Projects
+Skills
+Experience
+Education
+Social links
+DESIGN DIRECTION
+Dark theme with subtle blue accents.
+Modern developer portfolio aesthetic.
+Terminal-inspired elements and code snippets.
+Smooth animations using Framer Motion.
+Responsive hamburger navigation for mobile devices.
+Focus on professionalism suitable for employers and direct clients.
+SEO Keywords:
+Full Stack Developer Philippines
+AI Web Developer
+JavaScript Developer
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+7
+PHP Developer
+Next.js Developer
+IT Professional Philippines
+AI Integration Developer
+•
+•
+•
+•
+8

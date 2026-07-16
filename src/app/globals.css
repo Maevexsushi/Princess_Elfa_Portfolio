@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode for next-themes (attribute="class") */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light theme */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --muted-2: #64748b;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: #dbeafe;
+  --ring: #3b82f6;
+  --shadow: 15 23 42;
+}
+
+.dark {
+  /* Dark theme (default) — near-black with subtle blue accents */
+  --background: #060a14;
+  --surface: #0d1424;
+  --surface-2: #131c30;
+  --border: #1e293b;
+  --foreground: #e6edf6;
+  --muted: #9fb0c7;
+  --muted-2: #64748b;
+  --accent: #3b82f6;
+  --accent-strong: #60a5fa;
+  --accent-soft: #12203a;
+  --ring: #3b82f6;
+  --shadow: 0 0 0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #ffffff;
+  }
+
+  /* Visible focus for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, var(--accent-strong), #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .glow {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent),
+      0 20px 60px -25px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Blinking terminal cursor */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
