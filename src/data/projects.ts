@@ -11,7 +11,7 @@ export const projects: Project[] = [
     featured: true,
     technologies: ["JavaScript", "PHP", "MySQL", "AI APIs"],
     impact: "+30% faster response times",
-    githubUrl: "https://github.com/princessmae/dermasculpt",
+    githubUrl: "https://github.com/Maevexsushi",
     liveUrl: "#",
     screenshots: [
       { src: "/images/projects/dermasculpt.svg", alt: "DermaSculpt dashboard overview" },
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     featured: true,
     technologies: ["JavaScript", "PHP", "MySQL", "AI APIs"],
     impact: "Streamlined support workflows",
-    githubUrl: "https://github.com/princessmae/clinic-support-automation",
+    githubUrl: "https://github.com/Maevexsushi",
     liveUrl: "#",
     screenshots: [
       { src: "/images/projects/clinic-support.svg", alt: "Support automation inbox" },
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     featured: true,
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     impact: "Optimized for performance & SEO",
-    githubUrl: "https://github.com/princessmae/portfolio",
+    githubUrl: "https://github.com/Maevexsushi/Princess_Elfa_Portfolio",
     liveUrl: "#",
     screenshots: [
       { src: "/images/projects/portfolio.svg", alt: "Portfolio home page" },

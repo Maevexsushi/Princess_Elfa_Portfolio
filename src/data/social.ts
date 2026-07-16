@@ -5,7 +5,7 @@ import { siteConfig } from "./siteConfig";
 export const socialLinks: SocialLink[] = [
   {
     label: "GitHub",
-    href: "https://github.com/princessmae",
+    href: "https://github.com/Maevexsushi",
     icon: "github",
   },
   {
