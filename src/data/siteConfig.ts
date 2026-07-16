@@ -15,7 +15,7 @@ export const siteConfig = {
   // Public site URL — update after deploying to Vercel.
   url: "https://princess-elfa-portfolio.vercel.app",
   intro:
-    "I'm a Full Stack Developer with experience building web applications using JavaScript, PHP, and MySQL. I specialize in AI-powered solutions, system optimization, and creating reliable user-focused applications that improve business processes.",
+    "I'm a Full Stack Developer with experience building web applications using JavaScript, PHP, and MySQL. I have hands-on experience with AI integration and system optimization, building reliable, user-focused applications that improve business processes.",
   summary:
     "Passionate about combining AI and web technologies to solve real-world business problems while maintaining clean, scalable, and user-friendly applications.",
   openToWork:
