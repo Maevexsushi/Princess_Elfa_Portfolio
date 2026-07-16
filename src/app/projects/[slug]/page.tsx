@@ -173,15 +173,6 @@ export default async function CaseStudyPage({
         <BulletList items={cs.technicalChallenges} />
       </Block>
 
-      {/* Architecture diagram placeholder */}
-      <Block icon={GitBranch} title="Architecture Overview">
-        <div className="flex min-h-40 items-center justify-center rounded-2xl border border-dashed border-border bg-surface-2 p-8 text-center">
-          <p className="font-mono text-sm text-muted-2">
-            Architecture diagram placeholder — add a system diagram here.
-          </p>
-        </div>
-      </Block>
-
       {/* Screenshots */}
       {project.screenshots.length > 0 && (
         <Block icon={Layers} title="Screenshots">

@@ -54,115 +54,18 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "clinic-support-automation",
-    title: "Clinic Customer Support Automation",
-    tagline: "AI-powered customer inquiry management",
-    description:
-      "An AI-powered customer inquiry management system that streamlines support workflows and improves the customer experience by routing, drafting, and tracking responses.",
-    image: "/images/projects/clinic-support.svg",
-    featured: true,
-    technologies: ["JavaScript", "PHP", "MySQL", "AI APIs"],
-    impact: "Streamlined support workflows",
-    githubUrl: "https://github.com/Maevexsushi",
-    liveUrl: "#",
-    screenshots: [
-      { src: "/images/projects/clinic-support.svg", alt: "Support automation inbox" },
-    ],
-    caseStudy: {
-      overview:
-        "A support automation layer that helps a clinic manage inbound customer inquiries end to end — capturing messages, categorizing them, drafting AI-assisted replies, and tracking resolution status.",
-      businessProblem:
-        "Customer inquiries arrived across multiple channels with no central tracking, causing missed messages, slow replies, and an inconsistent customer experience.",
-      userRequirements: [
-        "Centralize inquiries into a single manageable queue.",
-        "Automatically categorize and prioritize incoming messages.",
-        "Suggest draft replies staff can approve or edit.",
-        "Track status from received to resolved.",
-      ],
-      technicalChallenges: [
-        "Reliably categorizing free-text inquiries with AI.",
-        "Preventing duplicate or dropped messages in the queue.",
-        "Keeping the interface fast for non-technical staff.",
-      ],
-      developmentProcess: [
-        "Mapped the existing manual support flow with staff.",
-        "Built a queue and status model in MySQL.",
-        "Added AI categorization and reply-drafting services.",
-        "Rolled out with a feedback loop to refine categories.",
-      ],
-      results: [
-        { value: "Faster", label: "Response handling" },
-        { value: "Better", label: "Customer experience" },
-        { value: "Zero", label: "Dropped inquiries in testing" },
-      ],
-      lessonsLearned: [
-        "Clear status tracking mattered as much as automation itself.",
-        "Simple, fast UI adoption beat feature richness for staff.",
-      ],
-    },
-  },
-  {
-    slug: "land-administration-tools",
-    title: "Land Administration Support Tools",
-    tagline: "Document retrieval & digital records (DENR)",
-    description:
-      "Support tools built during a DENR internship focused on document retrieval improvements and digital record management for the Land Administration and Management System (LAMS).",
-    image: "/images/projects/land-admin.svg",
-    featured: true,
-    technologies: ["LAMS", "Document Management", "System Testing"],
-    impact: "+15% document retrieval efficiency",
-    githubUrl: "#",
-    liveUrl: "#",
-    screenshots: [
-      { src: "/images/projects/land-admin.svg", alt: "Land administration records view" },
-    ],
-    caseStudy: {
-      overview:
-        "During an internship at the Department of Environment and Natural Resources (DENR), work focused on improving document retrieval and digital record management within the Land Administration and Management System (LAMS).",
-      businessProblem:
-        "Locating land documents was slow and manual, making record retrieval a bottleneck for staff serving citizen requests.",
-      userRequirements: [
-        "Retrieve land records faster and more reliably.",
-        "Improve organization of digital records.",
-        "Validate data accuracy during system testing.",
-        "Provide technical support to staff using the system.",
-      ],
-      technicalChallenges: [
-        "Working within an existing government system (LAMS).",
-        "Improving retrieval without disrupting live operations.",
-        "Validating data integrity across records.",
-      ],
-      developmentProcess: [
-        "Shadowed staff to understand retrieval pain points.",
-        "Assisted with digital record organization improvements.",
-        "Performed system testing and validation.",
-        "Provided troubleshooting and configured software/hardware.",
-      ],
-      results: [
-        { value: "15%", label: "Faster document retrieval" },
-        { value: "Improved", label: "Digital record management" },
-        { value: "Validated", label: "System accuracy" },
-      ],
-      lessonsLearned: [
-        "Government systems demand careful, low-risk incremental change.",
-        "Small workflow improvements compound into meaningful time savings.",
-      ],
-    },
-  },
-  {
     slug: "personal-portfolio",
     title: "Personal Portfolio Website",
     tagline: "Built with Next.js",
     description:
       "This portfolio, built with Next.js and optimized for performance, SEO, and responsiveness — featuring a terminal-inspired developer aesthetic and smooth animations.",
-    image: "/images/projects/portfolio.svg",
+    image: "/portfolio.png",
     featured: true,
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    impact: "Optimized for performance & SEO",
     githubUrl: "https://github.com/Maevexsushi/Princess_Elfa_Portfolio",
     liveUrl: "#",
     screenshots: [
-      { src: "/images/projects/portfolio.svg", alt: "Portfolio home page" },
+      { src: "/portfolio.png", alt: "Portfolio home page hero section" },
     ],
     caseStudy: {
       overview:
