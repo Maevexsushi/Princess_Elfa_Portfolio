@@ -7,15 +7,14 @@ export const projects: Project[] = [
     tagline: "AI Dermatology Clinic Support System",
     description:
       "An AI-powered clinic support platform that helps dermatology staff triage patient inquiries, surface relevant information, and respond faster. Improved response times by 30%.",
-    image: "/images/projects/dermasculpt.svg",
+    image: "/dermasculpt_thumbnail.png",
     featured: true,
     technologies: ["JavaScript", "PHP", "MySQL", "AI APIs"],
     impact: "+30% faster response times",
     githubUrl: "https://github.com/Maevexsushi",
     liveUrl: "#",
     screenshots: [
-      { src: "/images/projects/dermasculpt.svg", alt: "DermaSculpt dashboard overview" },
-      { src: "/images/projects/dermasculpt-2.svg", alt: "DermaSculpt AI triage panel" },
+      { src: "/dermasculpt_thumbnail.png", alt: "DermaSculpt clinic dashboard" },
     ],
     caseStudy: {
       overview:
