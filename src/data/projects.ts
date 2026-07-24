@@ -90,7 +90,7 @@ export const projects: Project[] = [
       ],
       results: [
         { value: "SEO", label: "Metadata, sitemap & structured data" },
-        { value: "A11y", label: "Keyboard & screen-reader friendly" },
+        { value: "Accessible", label: "Keyboard & screen-reader friendly" },
         { value: "Fast", label: "Optimized images & fonts" },
       ],
       lessonsLearned: [
