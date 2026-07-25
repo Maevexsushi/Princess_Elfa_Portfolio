@@ -13,7 +13,9 @@ export function SocialLinks({ className = "" }: { className?: string }) {
     <ul className={`flex items-center gap-3 ${className}`}>
       {socialLinks.map((link) => {
         const Icon = iconMap[link.icon] ?? FaEnvelope;
-        const external = link.icon !== "email";
+        // http(s) links (incl. the Gmail compose link) open in a new tab;
+        // any mailto/tel links stay in the same tab.
+        const external = link.href.startsWith("http");
         return (
           <li key={link.label}>
             <a

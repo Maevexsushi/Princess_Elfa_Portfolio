@@ -13,6 +13,12 @@ export function ContactSection() {
   const github = socialLinks.find((l) => l.icon === "github");
   const linkedin = socialLinks.find((l) => l.icon === "linkedin");
 
+  // Opens Gmail's web compose (in a new tab) pre-addressed to me, with a
+  // ready-to-go subject line — avoids relying on the OS default mail app.
+  const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    siteConfig.email,
+  )}&su=${encodeURIComponent(`Project inquiry for ${siteConfig.name}`)}`;
+
   return (
     <section
       id="contact"
@@ -35,7 +41,9 @@ export function ContactSection() {
           >
             <motion.a
               variants={fadeInUp}
-              href={`mailto:${siteConfig.email}`}
+              href={gmailHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">

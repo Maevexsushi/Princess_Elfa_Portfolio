@@ -15,7 +15,10 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: "Email",
-    href: `mailto:${siteConfig.email}`,
+    // Opens Gmail web compose instead of the OS default mail app.
+    href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      siteConfig.email,
+    )}`,
     icon: "email",
   },
 ];
