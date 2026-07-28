@@ -53,6 +53,71 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "portfolio-analyzer",
+    title: "Portfolio Analyzer",
+    tagline: "AI hiring-readiness reviewer for your work",
+    description:
+      "Paste a URL or upload a file — a website, resume, or portfolio deck — and get a scored report on what a hiring reviewer sees: what's missing, how deep the work reads, dead links, and a ranked list of what to fix first. Exports the whole thing as a PDF.",
+    image: "/images/projects/portfolio_analyzer_thumb.png",
+    featured: true,
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "AI / LLMs",
+      "Groq API",
+      "pdf-lib",
+      "Claude Code",
+    ],
+    impact: "0–100 scored reports with ranked fixes",
+    githubUrl: "https://github.com/Maevexsushi/portfolio_analyzer",
+    liveUrl: "https://portfolio-analyzer-flame-ten.vercel.app/",
+    screenshots: [
+      {
+        src: "/images/projects/portfolio_analyzer_thumb.png",
+        alt: "Portfolio Analyzer intake screen",
+      },
+    ],
+    caseStudy: {
+      overview:
+        "Portfolio Analyzer shows job applicants what a hiring reviewer actually sees in their material. You paste a URL or upload a file — a website, a resume, or a portfolio deck — and get a 0–100 scored report covering what's missing, how deep the work reads, dead links, and a ranked list of what to fix first, exportable as a PDF. Each input is judged against its own checks and against the applicant's detected field, not a one-size-fits-all developer standard.",
+      businessProblem:
+        "Applicants send out portfolios, resumes, and decks with no idea how a reviewer — or an applicant tracking system — will read them: what's missing, what reads as weak, or whether a parser can even extract their resume as text. There was no honest, field-aware way to check your own material before sending it.",
+      userRequirements: [
+        "Analyze three separate input types — website, resume, or portfolio file — each judged on its own checks.",
+        "Detect the applicant's field (design, writing, healthcare, trades, and more) and judge against that field's expectations.",
+        "Return a clear 0–100 score with a ranked, actionable list of what to fix first.",
+        "Check resumes for machine (ATS) readability and match them against specific job postings.",
+        "Export the full report as a PDF while keeping deep links and keyboard navigation.",
+        "Keep uploads private — extract in memory and never store the file.",
+      ],
+      technicalChallenges: [
+        "Fetching arbitrary user-supplied URLs safely with an SSRF-guarded fetcher that rejects private/loopback hosts across redirects, under strict time and body caps.",
+        "Keeping AI output honest — pairing every AI claim with supporting evidence and mechanically stripping invented numbers from resume rewrites.",
+        "Reading resumes from PDF, DOCX, and images (OCR), sniffing format from file bytes rather than the extension.",
+        "Detecting the field from a document's own vocabulary, reporting confidence and falling back rather than committing to a wrong guess.",
+        "A tabbed report that still prints every panel, keeps deep links via the URL hash, and follows the ARIA tabs keyboard pattern.",
+      ],
+      developmentProcess: [
+        "Built a weighted scoring engine (projects, sections, design, skills, links, performance) that returns the evidence behind every score.",
+        "Added discipline profiles so each field is scored against what it actually expects as proof of work.",
+        "Layered in optional Groq-powered AI review, resume rewrite, cover letter, job match, and company briefing — each strictly additive and degrading cleanly without a key.",
+        "Wrote a deterministic, network-free test suite over HTML and synthesized document fixtures, pinning each real-world idiom the checks must recognize.",
+      ],
+      results: [
+        { value: "0–100", label: "Weighted score with ranked fixes" },
+        { value: "3 inputs", label: "Website, resume & portfolio file" },
+        { value: "12+ fields", label: "Field-aware scoring" },
+      ],
+      lessonsLearned: [
+        "AI is only safe here when it's strictly additive and every claim is pinned to evidence — an unsupported confident sentence is worse than no feature at all.",
+        "Declining to guess (low-confidence fields, ambiguous title/company splits) builds more trust than a confident wrong answer.",
+        "Judging every applicant against a developer's standards was actively wrong for other fields — the field profile had to decide which checks even run.",
+      ],
+    },
+  },
+  {
     slug: "personal-portfolio",
     title: "Personal Portfolio Website",
     tagline: "Built with Next.js",
