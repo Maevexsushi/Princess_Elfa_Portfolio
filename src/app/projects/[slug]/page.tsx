@@ -13,6 +13,7 @@ import {
   TrendingUp,
   Lightbulb,
   Layers,
+  Boxes,
 } from "lucide-react";
 import { projects, getProject } from "@/data/projects";
 import { siteConfig } from "@/data/siteConfig";
@@ -110,13 +111,6 @@ export default async function CaseStudyPage({
         <p className="max-w-2xl leading-relaxed text-muted">
           {project.description}
         </p>
-        <ul className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <li key={tech}>
-              <TechBadge label={tech} />
-            </li>
-          ))}
-        </ul>
         {(hasRepo || hasLive) && (
           <div className="flex flex-wrap gap-3 pt-2">
             {hasRepo && (
@@ -156,6 +150,16 @@ export default async function CaseStudyPage({
           priority
         />
       </div>
+
+      <Block icon={Boxes} title="Tech Stack">
+        <ul className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <li key={tech}>
+              <TechBadge label={tech} />
+            </li>
+          ))}
+        </ul>
+      </Block>
 
       <Block icon={Layers} title="Project Overview">
         <p className="text-sm leading-relaxed text-muted">{cs.overview}</p>
