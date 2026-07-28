@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.local.example
 
+# internal project notes (not part of the published site)
+portfolio_analyzer.md
+
 # vercel
 .vercel
 
