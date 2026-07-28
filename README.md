@@ -7,15 +7,46 @@ highlights web development, AI integration, and IT support experience.
 ## Tech Stack
 
 - **Next.js** (App Router) + **React** + **TypeScript**
-- **Tailwind CSS v4** — dark theme (default) with a subtle-blue accent system
-- **Framer Motion** — animations (typing effect, scroll reveals, card hovers)
-- **next-themes** — dark/light mode toggle
+- **Tailwind CSS v4** — CSS-first theming; every design token lives in
+  [`src/app/globals.css`](src/app/globals.css)
+- **Outfit** (via `next/font`) — the single typeface
 - **lucide-react** + **react-icons** — icons
 - **Nodemailer** — contact form email delivery (Gmail SMTP)
 
+No animation library and no theme library: interaction feedback is plain CSS
+transitions, which keeps all but three components on the server.
+
+## Design system
+
+A strict **flat design** system — no box shadows, no blur, no vibrant
+gradients. Hierarchy comes from scale, weight and solid colour instead of depth,
+and each page section is a full-bleed colour block:
+
+| Section | Block |
+| --- | --- |
+| Hero | Blue 600 |
+| About · Projects | White |
+| Skills · Education | Gray 100 |
+| Experience · Footer | Gray 900 |
+| Contact | Amber 500 |
+
+Two rules worth knowing before extending it:
+
+- **The depth namespaces are deleted.** `globals.css` declares
+  `--shadow-*: initial` and `--blur-*: initial`, so `shadow-lg` or `blur-sm`
+  will not compile. That is deliberate.
+- **Inverted blocks need dark text.** White on Blue 500 and white on Emerald
+  both fail WCAG AA, so blue blocks use Blue 600 (`--color-primary-strong`) and
+  emerald/amber blocks use ink text. `Section` stamps a `data-tone` attribute
+  that flips the focus outline to white on those blocks.
+
+Reusable primitives live in [`src/components/ui/`](src/components/ui/):
+`Section` (colour blocks), `Card`, `IconTile`, `Label`, `BulletList`,
+`buttonClass()` and `GeometricComposition` (the hero artwork).
+
 ## Features
 
-- Hero with animated typing effect + terminal-style UI
+- Hero with a flat geometric composition and an animated typing effect
 - About, skills (icon cards), projects, experience timeline, education
 - Dedicated case-study pages at `/projects/[slug]`
 - Working contact form (server-side email)

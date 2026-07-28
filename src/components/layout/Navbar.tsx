@@ -5,18 +5,15 @@ import { useEffect, useState } from "react";
 import { Menu, X, FileDown } from "lucide-react";
 import { navLinks } from "@/data/nav";
 import { siteConfig } from "@/data/siteConfig";
-import { ThemeToggle } from "./ThemeToggle";
+import { buttonClass } from "@/components/ui/button";
 
+/**
+ * Solid white bar, no transparency and no scroll listener. The hard 2px rule
+ * against the blue hero below is the transition — a blurred glass header would
+ * soften exactly the edge this design wants to keep sharp.
+ */
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -27,25 +24,23 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled
-          ? "border-border bg-background/80 backdrop-blur-md"
-          : "border-transparent bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b-2 border-border bg-background">
       <nav
         className="container-page flex h-16 items-center justify-between"
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="font-mono text-lg font-bold tracking-tight"
+          className="flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="text-accent">{"<"}</span>
-          PME
-          <span className="text-accent">{" />"}</span>
+          <span
+            aria-hidden
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-sm font-extrabold text-white"
+          >
+            PME
+          </span>
+          <span className="sr-only">{siteConfig.name} — home</span>
         </Link>
 
         {/* Desktop links */}
@@ -54,7 +49,7 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="rounded-md px-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
+                className="rounded-md px-3 py-2 text-sm font-semibold text-foreground-soft transition-all duration-200 hover:bg-muted hover:text-foreground"
               >
                 {link.label}
               </Link>
@@ -62,39 +57,39 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle />
+        <div className="hidden md:flex">
           <a
             href={siteConfig.resumeUrl}
             download
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+            className={buttonClass({ variant: "primary", size: "md" })}
           >
-            <FileDown className="h-4 w-4" aria-hidden />
+            <FileDown className="h-4 w-4" strokeWidth={2.5} aria-hidden />
             Resume
           </a>
         </div>
 
-        {/* Mobile controls */}
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-surface text-foreground"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        {/* Mobile control */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex h-12 w-12 items-center justify-center rounded-md bg-muted text-foreground transition-all duration-200 hover:bg-muted-strong md:hidden"
+        >
+          {open ? (
+            <X className="h-5 w-5" strokeWidth={2.5} />
+          ) : (
+            <Menu className="h-5 w-5" strokeWidth={2.5} />
+          )}
+        </button>
       </nav>
 
       {/* Mobile menu */}
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-border bg-background md:hidden"
+          className="border-t-2 border-border bg-background md:hidden"
         >
           <ul className="container-page flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
@@ -102,20 +97,20 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-3 py-3 text-base text-muted transition-colors hover:bg-surface hover:text-foreground"
+                  className="block rounded-md px-4 py-3 text-base font-semibold text-foreground-soft transition-colors duration-200 hover:bg-muted hover:text-foreground"
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="mt-2">
+            <li className="mt-3">
               <a
                 href={siteConfig.resumeUrl}
                 download
                 onClick={() => setOpen(false)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-base font-medium text-white"
+                className={buttonClass({ className: "w-full" })}
               >
-                <FileDown className="h-4 w-4" aria-hidden />
+                <FileDown className="h-4 w-4" strokeWidth={2.5} aria-hidden />
                 Download Resume
               </a>
             </li>

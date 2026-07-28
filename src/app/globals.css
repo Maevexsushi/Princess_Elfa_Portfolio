@@ -1,113 +1,113 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode for next-themes (attribute="class") */
-@custom-variant dark (&:where(.dark, .dark *));
+/* ---------------------------------------------------------------------------
+   Flat design system — single light palette.
 
-:root {
-  /* Light theme */
-  --background: #f8fafc;
-  --surface: #ffffff;
-  --surface-2: #f1f5f9;
-  --border: #e2e8f0;
-  --foreground: #0f172a;
-  --muted: #475569;
-  --muted-2: #64748b;
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: #dbeafe;
-  --ring: #3b82f6;
-  --shadow: 15 23 42;
-}
+   Core rule: the Z-axis does not exist. Hierarchy comes from scale, colour
+   contrast and typography, never from depth. The `--shadow-*: initial` and
+   `--blur-*: initial` overrides below delete those utility namespaces
+   outright, so `shadow-lg` / `blur-sm` fail to compile rather than quietly
+   creeping back in a future edit.
+--------------------------------------------------------------------------- */
 
-.dark {
-  /* Dark theme (default) — near-black with subtle blue accents */
-  --background: #060a14;
-  --surface: #0d1424;
-  --surface-2: #131c30;
-  --border: #1e293b;
-  --foreground: #e6edf6;
-  --muted: #9fb0c7;
-  --muted-2: #64748b;
-  --accent: #3b82f6;
-  --accent-strong: #60a5fa;
-  --accent-soft: #12203a;
-  --ring: #3b82f6;
-  --shadow: 0 0 0;
+@theme {
+  /* Canvas */
+  --color-background: #ffffff;
+  --color-muted: #f3f4f6; /* gray-100 — section + card blocks */
+  --color-muted-strong: #e5e7eb; /* gray-200 — secondary button hover */
+  --color-border: #e5e7eb; /* gray-200 — used sparingly */
+
+  /* Ink */
+  --color-foreground: #111827; /* gray-900 */
+  --color-foreground-soft: #4b5563; /* gray-600 — body copy */
+  --color-foreground-faint: #6b7280; /* gray-500 — meta / labels */
+
+  /* Brand — Primary */
+  --color-primary: #3b82f6; /* blue-500  */
+  --color-primary-strong: #2563eb; /* blue-600 — bg for full-bleed blue blocks */
+  --color-primary-soft: #eff6ff; /* blue-50   */
+
+  /* Brand — Secondary */
+  --color-secondary: #10b981; /* emerald-500 */
+  --color-secondary-strong: #059669; /* emerald-600 */
+  --color-secondary-soft: #ecfdf5; /* emerald-50  */
+
+  /* Brand — Accent */
+  --color-accent: #f59e0b; /* amber-500 */
+  --color-accent-strong: #d97706; /* amber-600 */
+  --color-accent-soft: #fffbeb; /* amber-50  */
+
+  /* Inverted colour-block sections */
+  --color-ink: #111827; /* gray-900 */
+  --color-ink-soft: #1f2937; /* gray-800 — blocks inside dark sections */
+  --color-ink-faint: #374151; /* gray-700 — rules inside dark sections */
+  --color-on-ink: #d1d5db; /* gray-300 — body copy on dark blocks (10.9:1) */
+  --color-on-ink-faint: #9ca3af; /* gray-400 — meta on dark blocks (7.0:1) */
+
+  /* Display type — the hero and section headings carry the hierarchy */
+  --text-display: clamp(2.75rem, 6vw, 5rem);
+  --text-display-sm: clamp(2rem, 4vw, 3rem);
+
+  /* Depth is not part of this system */
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --blur-*: initial;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-2: var(--muted-2);
-  --color-accent: var(--accent);
-  --color-accent-strong: var(--accent-strong);
-  --color-accent-soft: var(--accent-soft);
-  --color-ring: var(--ring);
-
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
+  --font-sans: var(--font-outfit);
 }
 
 @layer base {
-  * {
-    border-color: var(--border);
-  }
-
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /* Geometric, print-inspired headings: bold with tight letter-spacing. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+  }
+
   ::selection {
-    background-color: var(--accent);
+    background-color: var(--color-primary);
     color: #ffffff;
   }
 
-  /* Visible focus for keyboard users */
+  /* With no shadows available, focus must be a hard, high-contrast outline.
+     `Section` stamps a data-tone attribute so inverted blocks flip it white. */
   :focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 3px solid var(--color-primary-strong);
     outline-offset: 2px;
     border-radius: 4px;
+  }
+
+  [data-tone="primary"] :focus-visible,
+  [data-tone="secondary"] :focus-visible,
+  [data-tone="accent"] :focus-visible,
+  [data-tone="ink"] :focus-visible {
+    outline-color: #ffffff;
   }
 }
 
 @layer utilities {
   .container-page {
     width: 100%;
-    max-width: 72rem;
+    max-width: 80rem; /* max-w-7xl per the design system */
     margin-inline: auto;
     padding-inline: 1.25rem;
-  }
-
-  .text-gradient {
-    background: linear-gradient(120deg, var(--accent-strong), #22d3ee);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
-    background-size: 44px 44px;
-  }
-
-  .glow {
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent),
-      0 20px 60px -25px color-mix(in srgb, var(--accent) 55%, transparent);
   }
 }
 
@@ -125,10 +125,16 @@
   }
 }
 
-/* Blinking terminal cursor */
+/* Blinking caret for the rotating-role typewriter */
 @keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 .cursor-blink {
   animation: blink 1s step-end infinite;

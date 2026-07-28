@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { buttonClass } from "./button";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -42,20 +43,24 @@ export function ContactForm() {
     }
   }
 
+  // Flat inputs: a solid gray block with no border at rest, hardening into a
+  // white field with a 2px primary border on focus. No ring glow.
   const inputClass =
-    "w-full rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted-2 transition-colors focus:border-accent focus:outline-none";
+    "w-full rounded-md border-2 border-transparent bg-muted px-4 py-3 text-foreground placeholder:text-foreground-faint transition-colors duration-200 focus:border-primary focus:bg-background focus:outline-none";
+
+  const labelTextClass = "text-xs font-semibold uppercase tracking-wider text-foreground";
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
       {/* Honeypot field — hidden from users, catches bots. */}
       <div className="hidden" aria-hidden>
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
+          <label htmlFor="name" className={labelTextClass}>
             Name
           </label>
           <input
@@ -69,7 +74,7 @@ export function ContactForm() {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
+          <label htmlFor="email" className={labelTextClass}>
             Email
           </label>
           <input
@@ -85,7 +90,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
+        <label htmlFor="message" className={labelTextClass}>
           Message
         </label>
         <textarea
@@ -101,7 +106,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+        className={buttonClass({ className: "mt-1 w-full" })}
       >
         {status === "submitting" ? (
           <>
@@ -110,7 +115,7 @@ export function ContactForm() {
           </>
         ) : (
           <>
-            <Send className="h-4 w-4" aria-hidden />
+            <Send className="h-4 w-4" strokeWidth={2.5} aria-hidden />
             Send Message
           </>
         )}
@@ -118,14 +123,14 @@ export function ContactForm() {
 
       <div aria-live="polite" role="status">
         {status === "success" && (
-          <p className="flex items-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-500">
-            <CheckCircle2 className="h-5 w-5 shrink-0" aria-hidden />
+          <p className="flex items-center gap-3 rounded-md bg-secondary px-4 py-3 font-semibold text-ink">
+            <CheckCircle2 className="h-5 w-5 shrink-0" strokeWidth={2.5} aria-hidden />
             {message}
           </p>
         )}
         {status === "error" && (
-          <p className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-            <AlertCircle className="h-5 w-5 shrink-0" aria-hidden />
+          <p className="flex items-center gap-3 rounded-md bg-ink px-4 py-3 font-semibold text-white">
+            <AlertCircle className="h-5 w-5 shrink-0" strokeWidth={2.5} aria-hidden />
             {message}
           </p>
         )}

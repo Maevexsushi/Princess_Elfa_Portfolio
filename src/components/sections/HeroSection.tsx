@@ -1,103 +1,96 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, FileDown, Mail } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import { TypingEffect } from "@/components/ui/TypingEffect";
-import { TerminalWindow } from "@/components/ui/TerminalWindow";
+import { GeometricComposition } from "@/components/ui/GeometricComposition";
 import { SocialLinks } from "@/components/ui/SocialLinks";
-import { fadeInUp, staggerContainer } from "@/lib/motion";
+import { Section } from "@/components/ui/Section";
+import { Label } from "@/components/ui/Label";
+import { buttonClass } from "@/components/ui/button";
 
+/**
+ * The page opens on a solid blue block rather than white, so the first thing a
+ * visitor reads is a colour field — the poster move the design system asks for.
+ *
+ * Blue-600 rather than blue-500: white body copy on blue-500 measures 3.68:1
+ * and fails WCAG AA. Blue-500 is still the button colour on light sections.
+ */
 export function HeroSection() {
   return (
-    <section
+    <Section
       id="hero"
-      className="relative overflow-hidden border-b border-border"
-      aria-labelledby="hero-heading"
+      tone="primary"
+      labelledBy="hero-heading"
+      innerClassName="lg:grid lg:grid-cols-2 lg:items-center lg:gap-16"
+      decoration={
+        <>
+          {/* Oversized flat shapes — visual interest with no depth cues */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-white/10"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-48 -left-28 h-96 w-96 rotate-12 rounded-lg bg-white/5"
+          />
+        </>
+      }
     >
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" aria-hidden />
-      <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]"
-        aria-hidden
-      />
+      <div className="flex flex-col items-start gap-7">
+        <Label className="inline-flex items-center gap-2.5 rounded-md bg-accent px-3.5 py-2 text-ink">
+          <span aria-hidden className="h-2 w-2 animate-pulse rounded-sm bg-ink" />
+          Available for opportunities
+        </Label>
 
-      <div className="container-page relative grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col gap-6"
-        >
-          <motion.span
-            variants={fadeInUp}
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-muted"
+        <h1 id="hero-heading" className="flex flex-col gap-3">
+          <span className="text-lg font-semibold uppercase tracking-wider">
+            Hi, I&apos;m
+          </span>
+          <span className="text-display font-extrabold leading-[0.95]">
+            {siteConfig.name}
+          </span>
+        </h1>
+
+        <p className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
+          <span aria-hidden className="h-8 w-1.5 shrink-0 rounded-sm bg-accent" />
+          <TypingEffect words={siteConfig.roles} />
+        </p>
+
+        <p className="max-w-xl text-lg leading-relaxed text-primary-soft">
+          {siteConfig.intro}
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          <Link href="/#projects" className={buttonClass({ variant: "inverse" })}>
+            View Projects
+            <ArrowRight className="h-5 w-5" strokeWidth={2.5} aria-hidden />
+          </Link>
+          <a
+            href={siteConfig.resumeUrl}
+            download
+            className={buttonClass({ variant: "outlineInverse" })}
           >
-            <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-            Available for opportunities
-          </motion.span>
-
-          <motion.h1
-            id="hero-heading"
-            variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
+            <FileDown className="h-5 w-5" strokeWidth={2.5} aria-hidden />
+            Resume
+          </a>
+          <Link
+            href="/#contact"
+            className={buttonClass({ variant: "outlineInverse" })}
           >
-            Hi, I&apos;m{" "}
-            <span className="text-gradient">Princess Mae D. Elfa</span>
-          </motion.h1>
+            <Mail className="h-5 w-5" strokeWidth={2.5} aria-hidden />
+            Contact
+          </Link>
+        </div>
 
-          <motion.p
-            variants={fadeInUp}
-            className="font-mono text-xl font-medium text-muted sm:text-2xl"
-          >
-            <span className="text-muted-2" aria-hidden>
-              {"> "}
-            </span>
-            <TypingEffect words={siteConfig.roles} />
-          </motion.p>
-
-          <motion.p
-            variants={fadeInUp}
-            className="max-w-xl leading-relaxed text-muted"
-          >
-            {siteConfig.intro}
-          </motion.p>
-
-          <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
-            <Link
-              href="/#projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
-            >
-              View Projects
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-            <a
-              href={siteConfig.resumeUrl}
-              download
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent"
-            >
-              <FileDown className="h-4 w-4" aria-hidden />
-              Download Resume
-            </a>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent"
-            >
-              <Mail className="h-4 w-4" aria-hidden />
-              Contact Me
-            </Link>
-          </motion.div>
-
-          <motion.div variants={fadeInUp} className="flex items-center gap-4">
-            <span className="font-mono text-xs text-muted-2">Find me on</span>
-            <SocialLinks />
-          </motion.div>
-        </motion.div>
-
-        <div className="flex justify-center lg:justify-end">
-          <TerminalWindow />
+        <div className="flex flex-wrap items-center gap-4">
+          <Label className="text-primary-soft">Find me on</Label>
+          <SocialLinks tone="onDark" />
         </div>
       </div>
-    </section>
+
+      <div className="mt-14 flex justify-center lg:mt-0 lg:justify-end">
+        <GeometricComposition />
+      </div>
+    </Section>
   );
 }

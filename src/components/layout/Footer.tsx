@@ -1,24 +1,21 @@
 import { siteConfig } from "@/data/siteConfig";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { Label } from "@/components/ui/Label";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/50">
-      <div className="container-page flex flex-col items-center justify-between gap-6 py-10 sm:flex-row">
+    <footer data-tone="ink" className="bg-ink text-white">
+      <div className="container-page flex flex-col items-center justify-between gap-8 py-14 sm:flex-row">
         <div className="text-center sm:text-left">
-          <p className="font-mono text-sm font-semibold">
-            <span className="text-accent">{"<"}</span>
-            {siteConfig.name}
-            <span className="text-accent">{" />"}</span>
-          </p>
-          <p className="mt-1 text-sm text-muted">
+          <p className="text-xl font-extrabold">{siteConfig.name}</p>
+          <Label as="p" className="mt-2 text-on-ink-faint">
             {siteConfig.title} · {siteConfig.location}
-          </p>
+          </Label>
         </div>
-        <div className="flex flex-col items-center gap-4 sm:items-end">
-          <SocialLinks />
-          <p className="font-mono text-xs text-muted-2">
-            © 2026 {siteConfig.name}. Built with Next.js.
+        <div className="flex flex-col items-center gap-5 sm:items-end">
+          <SocialLinks tone="onDark" />
+          <p className="text-xs text-on-ink-faint">
+            © {new Date().getFullYear()} {siteConfig.name}. Built with Next.js.
           </p>
         </div>
       </div>

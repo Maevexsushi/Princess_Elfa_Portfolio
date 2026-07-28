@@ -65,10 +65,13 @@ export function TypingEffect({
   const text = reducedMotion ? words[0] : current.substring(0, subIndex);
 
   return (
-    <span className={className} aria-live="polite">
-      <span className="text-gradient">{text}</span>
-      <span className="cursor-blink ml-0.5 font-normal text-accent" aria-hidden>
-        _
+    <span className={className}>
+      {/* The animated text is decorative: announcing it would fire on every
+          keystroke. Screen readers get the full list once, statically. */}
+      <span className="sr-only">{words.join(", ")}</span>
+      <span aria-hidden>
+        {text}
+        <span className="cursor-blink ml-1 inline-block h-[0.9em] w-[0.45em] translate-y-[0.05em] rounded-sm bg-current align-baseline" />
       </span>
     </span>
   );

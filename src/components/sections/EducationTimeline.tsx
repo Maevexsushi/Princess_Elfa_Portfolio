@@ -1,49 +1,52 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 import { education } from "@/data/education";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
+import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { IconTile } from "@/components/ui/IconTile";
+import { Label } from "@/components/ui/Label";
 
 export function EducationTimeline() {
   return (
-    <section id="education" className="scroll-mt-20 py-20 sm:py-28">
-      <div className="container-page flex flex-col gap-14">
-        <SectionHeading eyebrow="education" title="Education" />
+    <Section id="education" tone="muted" labelledBy="education-heading">
+      <SectionHeading
+        id="education-heading"
+        eyebrow="Education"
+        title="Education"
+      />
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="mx-auto grid w-full max-w-4xl gap-6 md:grid-cols-2"
-        >
-          {education.map((item) => (
-            <motion.article
-              key={item.institution}
-              variants={fadeInUp}
-              className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
-                <GraduationCap className="h-6 w-6" aria-hidden />
-              </span>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-accent">{item.period}</span>
-                {item.honor && (
-                  <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-xs text-accent-strong">
-                    {item.honor}
-                  </span>
-                )}
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
+      <div className="mx-auto grid w-full max-w-4xl gap-6 md:grid-cols-2">
+        {education.map((item, i) => (
+          <Card
+            key={item.institution}
+            as="article"
+            tone="white"
+            padding="lg"
+            interactive
+            className="flex flex-col gap-5"
+          >
+            <IconTile tone={i % 2 === 0 ? "primary" : "secondary"}>
+              <GraduationCap className="h-7 w-7" strokeWidth={2.5} />
+            </IconTile>
+            <div className="flex flex-wrap items-center gap-2">
+              <Label className="text-primary-strong">{item.period}</Label>
+              {item.honor && (
+                <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-ink">
+                  {item.honor}
+                </span>
+              )}
+            </div>
+            <div>
+              <h3 className="text-xl font-extrabold text-foreground">
                 {item.institution}
               </h3>
-              <p className="text-sm text-muted">{item.program}</p>
-            </motion.article>
-          ))}
-        </motion.div>
+              <p className="mt-2 leading-relaxed text-foreground-soft">
+                {item.program}
+              </p>
+            </div>
+          </Card>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }

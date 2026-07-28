@@ -1,13 +1,43 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { ComponentType } from "react";
 import { Mail, Clock, Sparkles } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { siteConfig } from "@/data/siteConfig";
 import { socialLinks } from "@/data/social";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/ui/ContactForm";
-import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
+import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { IconTile } from "@/components/ui/IconTile";
+import { Label } from "@/components/ui/Label";
+
+function ContactRow({
+  href,
+  icon: Icon,
+  label,
+  value,
+}: {
+  href: string;
+  icon: ComponentType<{ className?: string; strokeWidth?: number }>;
+  label: string;
+  value: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-4 rounded-lg bg-background p-4 transition-all duration-200 hover:scale-[1.02] hover:bg-primary-soft"
+    >
+      <IconTile tone="primary" size="sm">
+        <Icon className="h-5 w-5" strokeWidth={2.5} />
+      </IconTile>
+      <span className="flex min-w-0 flex-col gap-1">
+        <Label className="text-foreground-faint">{label}</Label>
+        <span className="truncate font-bold text-foreground">{value}</span>
+      </span>
+    </a>
+  );
+}
 
 export function ContactSection() {
   const github = socialLinks.find((l) => l.icon === "github");
@@ -20,115 +50,65 @@ export function ContactSection() {
   )}&su=${encodeURIComponent(`Project inquiry for ${siteConfig.name}`)}`;
 
   return (
-    <section
-      id="contact"
-      className="scroll-mt-20 border-t border-border bg-surface/40 py-20 sm:py-28"
-    >
-      <div className="container-page flex flex-col gap-14">
-        <SectionHeading
-          eyebrow="contact"
-          title="Interested in working together?"
-          description={siteConfig.openToWork}
-        />
+    <Section id="contact" tone="accent" labelledBy="contact-heading">
+      <SectionHeading
+        id="contact-heading"
+        eyebrow="Contact"
+        title="Interested in working together?"
+        description={siteConfig.openToWork}
+        tone="color"
+      />
 
-        <div className="mx-auto grid w-full max-w-4xl gap-10 lg:grid-cols-[1fr_1.2fr]">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="flex flex-col gap-4"
-          >
-            <motion.a
-              variants={fadeInUp}
-              href={gmailHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">
-                <Mail className="h-5 w-5" aria-hidden />
-              </span>
-              <span className="flex flex-col">
-                <span className="text-xs text-muted-2">Email</span>
-                <span className="text-sm font-medium text-foreground group-hover:text-accent">
-                  {siteConfig.email}
-                </span>
-              </span>
-            </motion.a>
+      <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_1.2fr]">
+        <div className="flex flex-col gap-4">
+          <ContactRow
+            href={gmailHref}
+            icon={Mail}
+            label="Email"
+            value={siteConfig.email}
+          />
+          {github && (
+            <ContactRow
+              href={github.href}
+              icon={FaGithub}
+              label="GitHub"
+              value="View my repositories"
+            />
+          )}
+          {linkedin && (
+            <ContactRow
+              href={linkedin.href}
+              icon={FaLinkedin}
+              label="LinkedIn"
+              value="Connect with me"
+            />
+          )}
 
-            {github && (
-              <motion.a
-                variants={fadeInUp}
-                href={github.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">
-                  <FaGithub className="h-5 w-5" />
-                </span>
-                <span className="flex flex-col">
-                  <span className="text-xs text-muted-2">GitHub</span>
-                  <span className="text-sm font-medium text-foreground group-hover:text-accent">
-                    View my repositories
-                  </span>
-                </span>
-              </motion.a>
-            )}
-
-            {linkedin && (
-              <motion.a
-                variants={fadeInUp}
-                href={linkedin.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">
-                  <FaLinkedin className="h-5 w-5" />
-                </span>
-                <span className="flex flex-col">
-                  <span className="text-xs text-muted-2">LinkedIn</span>
-                  <span className="text-sm font-medium text-foreground group-hover:text-accent">
-                    Connect with me
-                  </span>
-                </span>
-              </motion.a>
-            )}
-
-            <motion.div
-              variants={fadeInUp}
-              className="flex items-center gap-3 rounded-xl border border-border bg-surface p-4 text-sm text-muted"
-            >
-              <Clock className="h-5 w-5 shrink-0 text-accent" aria-hidden />
+          <div className="flex items-center gap-3 rounded-lg bg-ink p-4 text-white">
+            <Clock className="h-5 w-5 shrink-0" strokeWidth={2.5} aria-hidden />
+            <span>
               Typical response time:{" "}
-              <span className="font-medium text-foreground">
-                {siteConfig.responseTime}
-              </span>
-            </motion.div>
+              <span className="font-bold">{siteConfig.responseTime}</span>
+            </span>
+          </div>
 
-            <motion.div
-              variants={fadeInUp}
-              className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent-soft p-4 text-sm text-muted"
-            >
-              <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden />
+          <div className="flex items-start gap-3 rounded-lg bg-secondary p-4 text-ink">
+            <Sparkles
+              className="mt-0.5 h-5 w-5 shrink-0"
+              strokeWidth={2.5}
+              aria-hidden
+            />
+            <span className="font-semibold">
               Open to freelance, web development, AI integrations, and full-time
               roles.
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="rounded-2xl border border-border bg-surface p-6 sm:p-8"
-          >
-            <ContactForm />
-          </motion.div>
+            </span>
+          </div>
         </div>
+
+        <Card tone="white" padding="lg">
+          <ContactForm />
+        </Card>
       </div>
-    </section>
+    </Section>
   );
 }
