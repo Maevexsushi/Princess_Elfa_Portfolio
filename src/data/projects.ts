@@ -123,7 +123,7 @@ export const projects: Project[] = [
     tagline: "Built with Next.js",
     description:
       "This portfolio, built with Next.js and optimized for performance, SEO, and responsiveness — featuring a terminal-inspired developer aesthetic and smooth animations.",
-    image: "/portfolio.png",
+    image: "/portfolio_thumb.png",
     featured: true,
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     githubUrl: "https://github.com/Maevexsushi/Princess_Elfa_Portfolio",
