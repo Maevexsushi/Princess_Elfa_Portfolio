@@ -13,6 +13,8 @@ export const projects: Project[] = [
       "JavaScript",
       "PHP",
       "MySQL",
+      "CSS",
+      "Tailwind CSS",
       "AI APIs",
       "Claude Code",
       "Windsurf",
@@ -129,14 +131,20 @@ export const projects: Project[] = [
     title: "Personal Portfolio Website",
     tagline: "Built with Next.js",
     description:
-      "This portfolio, built with Next.js and optimized for performance, SEO, and responsiveness — featuring a terminal-inspired developer aesthetic and smooth animations.",
+      "This portfolio, built with Next.js and optimized for performance, SEO, and responsiveness — featuring a bold flat design system and snappy, CSS-only interactions.",
     image: "/portfolio_thumb.png",
     featured: true,
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Claude Code",
+      "Windsurf",
+    ],
     githubUrl: "https://github.com/Maevexsushi/Princess_Elfa_Portfolio",
     liveUrl: "#",
     screenshots: [
-      { src: "/portfolio.png", alt: "Portfolio home page hero section" },
+      { src: "/portfolio_thumb.png", alt: "Portfolio home page hero section" },
     ],
     caseStudy: {
       overview:
