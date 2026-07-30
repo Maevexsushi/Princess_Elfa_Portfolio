@@ -22,20 +22,27 @@
   --color-foreground-soft: #4b5563; /* gray-600 — body copy */
   --color-foreground-faint: #6b7280; /* gray-500 — meta / labels */
 
-  /* Brand — Primary */
+  /* Brand — Primary
+     `soft` (50) is only safe on a coloured section; against white it measures
+     1.08:1 and disappears. Card blocks sitting on white use `tint` (100). */
   --color-primary: #3b82f6; /* blue-500  */
   --color-primary-strong: #2563eb; /* blue-600 — bg for full-bleed blue blocks */
+  --color-primary-deep: #1d4ed8; /* blue-700 — accent text on a tint */
   --color-primary-soft: #eff6ff; /* blue-50   */
+  --color-primary-tint: #dbeafe; /* blue-100 — card blocks on white */
+  --color-primary-tint-strong: #bfdbfe; /* blue-200 — their hover */
 
   /* Brand — Secondary */
   --color-secondary: #10b981; /* emerald-500 */
   --color-secondary-strong: #059669; /* emerald-600 */
   --color-secondary-soft: #ecfdf5; /* emerald-50  */
+  --color-secondary-tint: #d1fae5; /* emerald-100 */
 
   /* Brand — Accent */
   --color-accent: #f59e0b; /* amber-500 */
   --color-accent-strong: #d97706; /* amber-600 */
   --color-accent-soft: #fffbeb; /* amber-50  */
+  --color-accent-tint: #fef3c7; /* amber-100 */
 
   /* Inverted colour-block sections */
   --color-ink: #111827; /* gray-900 */

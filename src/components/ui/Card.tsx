@@ -30,9 +30,9 @@ const toneClass: Record<CardTone, string> = {
 const hoverToneClass: Record<CardTone, string> = {
   white: "hover:bg-muted",
   muted: "hover:bg-muted-strong",
-  primary: "hover:bg-blue-100",
-  secondary: "hover:bg-emerald-100",
-  accent: "hover:bg-amber-100",
+  primary: "hover:bg-primary-tint",
+  secondary: "hover:bg-secondary-tint",
+  accent: "hover:bg-accent-tint",
   ink: "hover:bg-ink-faint",
 };
 

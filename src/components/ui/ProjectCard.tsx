@@ -11,7 +11,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const hasRepo = project.githubUrl && project.githubUrl !== "#";
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-lg bg-muted transition-all duration-200 hover:scale-[1.02] hover:bg-primary-soft">
+    <article className="group flex flex-col overflow-hidden rounded-lg bg-primary-tint transition-all duration-200 hover:scale-[1.02] hover:bg-primary-tint-strong">
       <Link
         href={`/projects/${project.slug}`}
         className="relative block aspect-[16/10] overflow-hidden bg-ink"
@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex flex-col gap-2">
-          <Label className="text-primary-strong">{project.tagline}</Label>
+          <Label className="text-primary-deep">{project.tagline}</Label>
           <h3 className="text-2xl font-extrabold text-foreground">
             {project.title}
           </h3>
@@ -53,10 +53,11 @@ export function ProjectCard({ project }: { project: Project }) {
           ))}
         </ul>
 
-        <div className="mt-1 flex items-center justify-between gap-4 border-t-2 border-border pt-4">
+        {/* A white rule, not gray-200 — a gray hairline vanishes on the tint */}
+        <div className="mt-1 flex items-center justify-between gap-4 border-t-2 border-white pt-4">
           <Link
             href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary-strong transition-colors duration-200 hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary-deep transition-colors duration-200 hover:text-foreground"
           >
             Case study
             <ArrowRight
