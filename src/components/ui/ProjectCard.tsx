@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa6";
 import { ArrowRight, ExternalLink, TrendingUp } from "lucide-react";
 import type { Project } from "@/lib/types";
 import { Label } from "./Label";
+import { StatusPill } from "./StatusPill";
 import { TechBadge } from "./TechBadge";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -24,6 +25,9 @@ export function ProjectCard({ project }: { project: Project }) {
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
+        {project.status && (
+          <StatusPill status={project.status} className="absolute top-4 left-4" />
+        )}
       </Link>
 
       <div className="flex flex-1 flex-col gap-4 p-6">

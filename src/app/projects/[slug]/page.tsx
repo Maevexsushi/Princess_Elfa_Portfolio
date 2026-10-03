@@ -23,6 +23,7 @@ import { Section } from "@/components/ui/Section";
 import { IconTile } from "@/components/ui/IconTile";
 import { BulletList } from "@/components/ui/BulletList";
 import { Label } from "@/components/ui/Label";
+import { StatusPill } from "@/components/ui/StatusPill";
 import { buttonClass } from "@/components/ui/button";
 
 export function generateStaticParams() {
@@ -115,6 +116,7 @@ export default async function CaseStudyPage({
         </Link>
 
         <div className="flex flex-col gap-4">
+          {project.status && <StatusPill status={project.status} />}
           <Label className="text-accent">{project.tagline}</Label>
           <h1
             id="case-study-heading"

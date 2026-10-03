@@ -45,8 +45,12 @@ export interface CaseStudySection {
   lessonsLearned: string[];
 }
 
+export type ProjectStatus = "in-progress";
+
 export interface Project {
   slug: string;
+  /** Omit for finished projects. */
+  status?: ProjectStatus;
   title: string;
   tagline: string;
   description: string;
