@@ -1,39 +1,24 @@
 import { cn } from "@/lib/cn";
 
 /**
- * Button styling as a class factory rather than a component.
- *
- * Call sites are a mix of `<Link>`, `<a download>` and `<button type="submit">`,
- * so a function avoids polymorphic-component gymnastics while still keeping the
- * variants in one place.
- *
- * Feedback is scale + colour, never depth: `hover:scale-105` with a 200ms
- * transition, and no shadow anywhere.
+ * Button styling as a class factory rather than a component: call sites mix
+ * `<Link>`, `<a download>` and `<button type="submit">`, and a function keeps
+ * the variants in one place without polymorphic-component gymnastics.
  */
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "outline"
-  /** Solid white — for use on the blue, amber and ink blocks. */
-  | "inverse"
-  /** White outline that fills on hover — for use on the blue and ink blocks. */
-  | "outlineInverse";
-
-export type ButtonSize = "md" | "lg";
+export type ButtonVariant = "primary" | "secondary" | "ghost";
+export type ButtonSize = "sm" | "md" | "lg";
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-white hover:bg-primary-strong",
-  secondary: "bg-muted text-foreground hover:bg-muted-strong",
-  outline:
-    "border-4 border-primary text-primary hover:bg-primary hover:text-white",
-  inverse: "bg-white text-primary-strong hover:bg-primary-soft",
-  outlineInverse:
-    "border-4 border-white text-white hover:bg-white hover:text-primary-strong",
+  primary: "bg-ink text-bg hover:bg-ink/80",
+  secondary:
+    "border border-rule-strong text-ink hover:border-ink hover:bg-bg-raised",
+  ghost: "text-ink-2 hover:bg-bg-raised hover:text-ink",
 };
 
 const sizeClass: Record<ButtonSize, string> = {
-  md: "h-12 px-5 text-sm",
-  lg: "h-14 px-7 text-base",
+  sm: "h-9 px-4 text-sm",
+  md: "h-11 px-5 text-sm",
+  lg: "h-13 px-6 text-[15px]",
 };
 
 export function buttonClass({
@@ -46,7 +31,8 @@ export function buttonClass({
   className?: string;
 } = {}): string {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-all duration-200 hover:scale-105 active:scale-100",
+    "group/btn inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap",
+    "transition-[background-color,color,border-color,transform] duration-300 ease-out-quint active:scale-[0.97]",
     "disabled:pointer-events-none disabled:opacity-60",
     variantClass[variant],
     sizeClass[size],

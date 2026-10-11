@@ -9,11 +9,16 @@ export const siteConfig = {
     "Problem Solver",
   ],
   location: "Philippines",
+  timeZone: "Asia/Manila",
+  timeZoneLabel: "PHT",
   email: "princessmaeelfa07@gmail.com",
   responseTime: "Within 24 hours",
   resumeUrl: "/Princess_Elfa_RESUME.pdf",
   // Public site URL — update after deploying to Vercel.
   url: "https://princess-elfa-portfolio.vercel.app",
+  // The one-sentence version, set large in the hero.
+  headline:
+    "I build web applications that put AI to work on real, everyday problems.",
   intro:
     "I'm a Full Stack Developer with experience building web applications using JavaScript, PHP, and MySQL. I have hands-on experience with AI integration and system optimization, building reliable, user-focused applications that improve business processes.",
   summary:

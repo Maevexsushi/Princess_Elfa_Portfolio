@@ -1,124 +1,248 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Flat design system — single light palette.
+   Black-and-white dashboard system.
 
-   Core rule: the Z-axis does not exist. Hierarchy comes from scale, colour
-   contrast and typography, never from depth. The `--shadow-*: initial` and
-   `--blur-*: initial` overrides below delete those utility namespaces
-   outright, so `shadow-lg` / `blur-sm` fail to compile rather than quietly
-   creeping back in a future edit.
+   A quiet grey canvas with white panels on it (black on black in the dark
+   theme). Greys are for secondary text and rules only. Hierarchy comes from
+   weight, from the step between full and muted ink, and from the panels
+   themselves — never from colour.
+
+   Themes and the sidebar's collapsed state are attributes on <html>, set by
+   an inline script before first paint so neither ever flashes. The media
+   query is the no-JS fallback for the theme.
 --------------------------------------------------------------------------- */
 
-@theme {
-  /* Canvas */
-  --color-background: #ffffff;
-  --color-muted: #f3f4f6; /* gray-100 — section + card blocks */
-  --color-muted-strong: #e5e7eb; /* gray-200 — secondary button hover */
-  --color-border: #e5e7eb; /* gray-200 — used sparingly */
-
-  /* Ink */
-  --color-foreground: #111827; /* gray-900 */
-  --color-foreground-soft: #4b5563; /* gray-600 — body copy */
-  --color-foreground-faint: #6b7280; /* gray-500 — meta / labels */
-
-  /* Brand — Primary
-     `soft` (50) is only safe on a coloured section; against white it measures
-     1.08:1 and disappears. Card blocks sitting on white use `tint` (100). */
-  --color-primary: #3b82f6; /* blue-500  */
-  --color-primary-strong: #2563eb; /* blue-600 — bg for full-bleed blue blocks */
-  --color-primary-deep: #1d4ed8; /* blue-700 — accent text on a tint */
-  --color-primary-soft: #eff6ff; /* blue-50   */
-  --color-primary-tint: #dbeafe; /* blue-100 — card blocks on white */
-  --color-primary-tint-strong: #bfdbfe; /* blue-200 — their hover */
-
-  /* Brand — Secondary */
-  --color-secondary: #10b981; /* emerald-500 */
-  --color-secondary-strong: #059669; /* emerald-600 */
-  --color-secondary-soft: #ecfdf5; /* emerald-50  */
-  --color-secondary-tint: #d1fae5; /* emerald-100 */
-
-  /* Brand — Accent */
-  --color-accent: #f59e0b; /* amber-500 */
-  --color-accent-strong: #d97706; /* amber-600 */
-  --color-accent-soft: #fffbeb; /* amber-50  */
-  --color-accent-tint: #fef3c7; /* amber-100 */
-
-  /* Inverted colour-block sections */
-  --color-ink: #111827; /* gray-900 */
-  --color-ink-soft: #1f2937; /* gray-800 — blocks inside dark sections */
-  --color-ink-faint: #374151; /* gray-700 — rules inside dark sections */
-  --color-on-ink: #d1d5db; /* gray-300 — body copy on dark blocks (10.9:1) */
-  --color-on-ink-faint: #9ca3af; /* gray-400 — meta on dark blocks (7.0:1) */
-
-  /* Display type — the hero and section headings carry the hierarchy */
-  --text-display: clamp(2.75rem, 6vw, 5rem);
-  --text-display-sm: clamp(2rem, 4vw, 3rem);
-
-  /* Depth is not part of this system */
-  --shadow-*: initial;
-  --inset-shadow-*: initial;
-  --drop-shadow-*: initial;
-  --blur-*: initial;
+:root {
+  --bg: #f5f5f5;
+  --bg-raised: #ededed;
+  --surface: #ffffff;
+  --ink: #0a0a0a;
+  --ink-2: #404040;
+  --ink-3: #696969;
+  --rule: #e5e5e5;
+  --rule-strong: #d0d0d0;
+  /* Black and white: the "accent" is simply full-strength ink. */
+  --accent: #0a0a0a;
+  --accent-ink: #0a0a0a;
+  --sidebar-w: 15rem;
+  color-scheme: light;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --bg-raised: #1a1a1a;
+    --surface: #0f0f0f;
+    --ink: #fafafa;
+    --ink-2: #b5b5b5;
+    --ink-3: #8f8f8f;
+    --rule: #222222;
+    --rule-strong: #363636;
+    --accent: #fafafa;
+    --accent-ink: #fafafa;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --bg-raised: #1a1a1a;
+  --surface: #0f0f0f;
+  --ink: #fafafa;
+  --ink-2: #b5b5b5;
+  --ink-3: #8f8f8f;
+  --rule: #222222;
+  --rule-strong: #363636;
+  --accent: #fafafa;
+  --accent-ink: #fafafa;
+  color-scheme: dark;
+}
+
+:root[data-sidebar="collapsed"] {
+  --sidebar-w: 4.25rem;
+}
+
+/* `collapsed:` styles apply while the sidebar is folded to icons. */
+@custom-variant collapsed (:root[data-sidebar="collapsed"] &);
+
 @theme inline {
-  --font-sans: var(--font-outfit);
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@theme {
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+    background-color: var(--bg);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans), system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  /* Geometric, print-inspired headings: bold with tight letter-spacing. */
-  h1,
-  h2,
-  h3,
-  h4 {
-    letter-spacing: -0.02em;
-  }
-
   ::selection {
-    background-color: var(--color-primary);
-    color: #ffffff;
+    background-color: var(--ink);
+    color: var(--bg);
   }
 
-  /* With no shadows available, focus must be a hard, high-contrast outline.
-     `Section` stamps a data-tone attribute so inverted blocks flip it white. */
   :focus-visible {
-    outline: 3px solid var(--color-primary-strong);
+    outline: 2px solid var(--ink);
     outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  [data-tone="primary"] :focus-visible,
-  [data-tone="secondary"] :focus-visible,
-  [data-tone="accent"] :focus-visible,
-  [data-tone="ink"] :focus-visible {
-    outline-color: #ffffff;
+    border-radius: 6px;
   }
 }
 
 @layer utilities {
-  .container-page {
-    width: 100%;
-    max-width: 80rem; /* max-w-7xl per the design system */
-    margin-inline: auto;
-    padding-inline: 1.25rem;
+  /* Small uppercase mono — every label, index, caption and key hint. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Headings: the same family as the body, heavier and tighter. */
+  .heading {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  /* A dashboard panel. */
+  .panel {
+    border: 1px solid var(--rule);
+    background-color: var(--surface);
+    border-radius: 0.875rem;
+  }
+
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms var(--ease-out-quint);
+  }
+  .link-draw:hover,
+  .group:hover .link-draw,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .only-dark {
+    display: none;
+  }
+  :root[data-theme="dark"] .only-dark {
+    display: inline-flex;
+  }
+  :root[data-theme="dark"] .only-light {
+    display: none;
+  }
+
+  /* Hide scrollbars on horizontally scrolling rails without losing scroll. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
-/* Respect users who prefer reduced motion */
+/* ---------------------------------------------------------------------------
+   Motion. Progressive enhancement throughout: without support, or with
+   reduced motion requested, everything simply appears in place.
+--------------------------------------------------------------------------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Panels arrive in a short stagger, set with an inline --d delay. */
+  .rise {
+    animation: rise 700ms var(--ease-out-quint) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  /* Chart bars draw in from their start. */
+  .grow {
+    transform-origin: 0 50%;
+    animation: grow-x 900ms var(--ease-out-quint) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: currentColor;
+    animation: pulse-ring 2s var(--ease-out-quint) infinite;
+  }
+}
+
+/* Reading progress on project pages, tied to the page's scroll timeline. */
+.reading-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    display: block;
+    transform-origin: 0 50%;
+    animation: grow-x linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -132,17 +256,57 @@
   }
 }
 
-/* Blinking caret for the rotating-role typewriter */
-@keyframes blink {
-  0%,
-  49% {
-    opacity: 1;
+/* ---------------------------------------------------------------------------
+   Command palette — a native <dialog>, animated in with @starting-style.
+--------------------------------------------------------------------------- */
+
+dialog.palette {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition:
+    opacity 180ms var(--ease-out-quint),
+    transform 220ms var(--ease-out-quint),
+    overlay 220ms allow-discrete,
+    display 220ms allow-discrete;
+}
+dialog.palette[open] {
+  opacity: 1;
+  transform: none;
+}
+@starting-style {
+  dialog.palette[open] {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
   }
-  50%,
-  100% {
+}
+dialog.palette::backdrop {
+  background: color-mix(in oklab, var(--bg) 60%, transparent);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition:
+    opacity 200ms ease,
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
+}
+dialog.palette[open]::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  dialog.palette[open]::backdrop {
     opacity: 0;
   }
 }
-.cursor-blink {
-  animation: blink 1s step-end infinite;
+
+/* ---------------------------------------------------------------------------
+   View transitions — project imagery morphs between list and detail views;
+   everything else cross-fades quickly.
+--------------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+::view-transition-group(.project-image) {
+  animation-duration: 480ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

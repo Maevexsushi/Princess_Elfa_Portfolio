@@ -1,6 +1,6 @@
 import type { SkillCategory } from "@/lib/types";
 
-// `icon` maps to a key resolved in the SkillCard component. Unknown keys
+// `icon` maps to a key resolved in the SkillIcon component. Unknown keys
 // gracefully fall back to a generic badge, so new skills are safe to add.
 export const skillCategories: SkillCategory[] = [
   {

@@ -9,50 +9,66 @@ highlights web development, AI integration, and IT support experience.
 - **Next.js** (App Router) + **React** + **TypeScript**
 - **Tailwind CSS v4** — CSS-first theming; every design token lives in
   [`src/app/globals.css`](src/app/globals.css)
-- **Outfit** (via `next/font`) — the single typeface
+- **Geist** and **Geist Mono** (via `next/font`) — everything, and labels
 - **lucide-react** + **react-icons** — icons
 - **Nodemailer** — contact form email delivery (Gmail SMTP)
 
-No animation library and no theme library: interaction feedback is plain CSS
-transitions, which keeps all but three components on the server.
+No animation, chart, theme or UI-component library: charts are plain markup,
+motion is CSS (`@starting-style`, scroll timelines, React `<ViewTransition>`),
+the theme is CSS variables, and the command menu is a native `<dialog>`.
 
 ## Design system
 
-A strict **flat design** system — no box shadows, no blur, no vibrant
-gradients. Hierarchy comes from scale, weight and solid colour instead of depth,
-and each page section is a full-bleed colour block:
+**A black-and-white dashboard.** A grey canvas with white panels (black on
+black in the dark theme), one typeface, and greys only for secondary text and
+rules. Hierarchy comes from weight, from the step between full and muted ink,
+and from the panels themselves.
 
-| Section | Block |
+- **Tokens** are CSS variables in [`src/app/globals.css`](src/app/globals.css)
+  (`--bg`, `--surface`, `--ink`, `--ink-2`, `--ink-3`, `--rule`, …), exposed to
+  Tailwind as `bg-bg`, `bg-surface`, `text-ink`, `border-rule` and so on.
+  Every text/background pair was checked against WCAG AA.
+- **Theme and sidebar state** are attributes on `<html>` (`data-theme`,
+  `data-sidebar`), applied by an inline script before first paint, so neither
+  flashes. Style the folded sidebar with the `collapsed:` variant.
+- **Type.** `.heading` sets headings (Geist, semibold, tight tracking);
+  `.eyebrow` sets every mono label, index and key hint; `.panel` is the card.
+- **Images** are greyscale until hovered, so the page stays black and white.
+
+### Structure
+
+| Route | What it shows |
 | --- | --- |
-| Hero | Blue 600 |
-| About · Projects | White |
-| Skills · Education | Gray 100 |
-| Experience · Footer | Gray 900 |
-| Contact | Amber 500 |
+| `/` | Overview: ID badge, intro, headline figures, now building, projects, stack chart, timeline, contact |
+| `/projects` | Searchable, filterable projects in a table or grid |
+| `/projects/[slug]` | Case study: figures, chapters, details sidebar, table of contents |
+| `/experience` | Career timeline chart, roles and education |
+| `/stack` | Technology usage across projects, plus every skill by area |
+| `/contact` | Contact form and channels |
 
-Two rules worth knowing before extending it:
-
-- **The depth namespaces are deleted.** `globals.css` declares
-  `--shadow-*: initial` and `--blur-*: initial`, so `shadow-lg` or `blur-sm`
-  will not compile. That is deliberate.
-- **Inverted blocks need dark text.** White on Blue 500 and white on Emerald
-  both fail WCAG AA, so blue blocks use Blue 600 (`--color-primary-strong`) and
-  emerald/amber blocks use ink text. `Section` stamps a `data-tone` attribute
-  that flips the focus outline to white on those blocks.
-
-Reusable primitives live in [`src/components/ui/`](src/components/ui/):
-`Section` (colour blocks), `Card`, `IconTile`, `Label`, `BulletList`,
-`buttonClass()` and `GeometricComposition` (the hero artwork).
+The shell lives in [`src/components/shell/`](src/components/shell/) (`Sidebar`,
+`TopBar`, `MobileTabBar`, `Shortcuts`), the widgets in
+[`src/components/dashboard/`](src/components/dashboard/), and shared pieces in
+[`src/components/ui/`](src/components/ui/) (`Panel`, `IdBadge`, `StatusBadge`,
+`CommandPalette`, …). Every chart is derived from the content files by
+[`src/lib/insights.ts`](src/lib/insights.ts) — nothing is typed in by hand.
 
 ## Features
 
-- Hero with a flat geometric composition and an animated typing effect
-- About, skills (icon cards), projects, experience timeline, education
-- Dedicated case-study pages at `/projects/[slug]`
-- Working contact form (server-side email)
-- SEO: metadata, Open Graph/Twitter, `sitemap.xml`, `robots.txt`, JSON-LD
-- Accessible: semantic HTML, keyboard navigation, focus states, reduced-motion
-- Mobile-first responsive design with a hamburger menu
+- **An ID badge on a lanyard**: drag it, swing it, fling it, click (or press
+  Enter) to turn it over; arrow keys swing it. A small Verlet physics
+  simulation, no libraries; it starts at rest and sleeps when still
+- Dashboard shell: collapsible sidebar on desktop (`[` to fold), tab bar on phones
+- **Keyboard first**: ⌘K / Ctrl+K (or `/`) command menu; **G then O / P / E / S / C**
+  jumps to Overview, Projects, Experience, Stack or Contact
+- Charts from real data: technology usage counted across projects, a career
+  timeline from each role's dates, and Acadify's roadmap progress
+- Project search, status filter and table/grid views
+- Project images morph into the case study (React `<ViewTransition>`)
+- Light and dark themes with no flash on load; live local clock
+- Working contact form (server-side email) and one-click copy of the email
+- SEO: per-page metadata, Open Graph/Twitter, `sitemap.xml`, `robots.txt`, JSON-LD
+- Accessible: semantic landmarks, skip link, keyboard-first menu, visible focus
 
 ## Getting Started
 
@@ -94,13 +110,14 @@ not the components:
 | `projects.ts` | Projects + full case-study content |
 | `experience.ts` | Work experience timeline |
 | `education.ts` | Education entries |
-| `stats.ts` | Key statistics |
+| `stats.ts` | Headline figures (each with its source) |
+| `nav.ts` | Dashboard pages, icons and G-key shortcuts |
 
 **Placeholders to replace before publishing:**
 
 - `public/resume.pdf` — the real resume
 - `public/images/projects/*.svg` — real project screenshots
-- `public/og.svg` — social share image
+- `public/og.png` — social share image (1200×630)
 - URLs in `src/data/social.ts` and `src/data/siteConfig.ts` (including `url`)
 
 ## Deploy (Vercel)

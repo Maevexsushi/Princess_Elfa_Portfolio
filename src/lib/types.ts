@@ -6,7 +6,7 @@ export interface SocialLink {
 
 export interface Skill {
   name: string;
-  icon: string; // react-icons key resolved in SkillCard
+  icon: string; // icon key resolved in SkillIcon
 }
 
 export interface SkillCategory {
@@ -18,6 +18,9 @@ export interface ExperienceItem {
   role: string;
   organization: string;
   period: string;
+  /** "YYYY-MM", for the timeline chart. */
+  start: string;
+  end: string;
   location?: string;
   bullets: string[];
 }
@@ -26,13 +29,17 @@ export interface EducationItem {
   institution: string;
   program: string;
   period: string;
+  /** "YYYY-MM", for the timeline chart. */
+  start: string;
+  end: string;
   honor?: string;
 }
 
 export interface StatItem {
   value: string;
   label: string;
-  icon: string;
+  /** Where the figure comes from, shown as a caption. */
+  source: string;
 }
 
 export interface CaseStudySection {
@@ -51,6 +58,8 @@ export interface Project {
   slug: string;
   /** Omit for finished projects. */
   status?: ProjectStatus;
+  /** Measurable progress for work still under way, e.g. sprints delivered. */
+  progress?: { value: number; total: number; unit: string };
   title: string;
   tagline: string;
   description: string;

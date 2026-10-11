@@ -1,0 +1,49 @@
+import { projects } from "@/data/projects";
+import { techUsage } from "@/lib/insights";
+
+/**
+ * How many of my projects each technology appears in — counted from the
+ * projects list, so it can't drift from the work it describes.
+ */
+export function StackUsage({ limit }: { limit?: number }) {
+  const usage = techUsage();
+  const rows = limit ? usage.slice(0, limit) : usage;
+  const total = projects.length;
+
+  return (
+    <div className="flex flex-1 flex-col gap-3">
+      <ul className="flex flex-col gap-2.5">
+        {rows.map((t, i) => (
+          <li
+            key={t.name}
+            className="grid grid-cols-[minmax(0,8.5rem)_1fr_2.25rem] items-center gap-3 text-[13px]"
+          >
+            <span className="truncate text-ink" title={t.name}>
+              {t.name}
+            </span>
+            <span
+              className="relative h-2 overflow-hidden rounded-full bg-bg-raised"
+              title={`Used in: ${t.projects.join(", ")}`}
+            >
+              <span
+                className="grow absolute inset-y-0 left-0 rounded-full bg-ink"
+                style={
+                  {
+                    width: `${(t.count / total) * 100}%`,
+                    "--d": `${200 + i * 40}ms`,
+                  } as React.CSSProperties
+                }
+              />
+            </span>
+            <span className="text-right text-ink-3 tabular-nums">
+              {t.count}/{total}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className="eyebrow mt-auto pt-2 text-ink-3">
+        {usage.length} technologies across {total} projects
+      </p>
+    </div>
+  );
+}

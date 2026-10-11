@@ -1,10 +1,19 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { buttonClass } from "./button";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+/**
+ * Boxed fields with the label above; the label darkens with the field on
+ * focus. The label follows the field in the markup (lifted with
+ * flex-col-reverse) so `peer-focus` can reach it.
+ */
+const fieldClass =
+  "peer w-full rounded-lg border border-rule bg-bg px-3 py-2.5 text-sm text-ink placeholder:text-ink-3 transition-[border-color,box-shadow] duration-200 focus:border-ink-3 focus:ring-4 focus:ring-ink/5 focus:outline-none";
+const labelClass = "text-[13px] font-medium text-ink-2 transition-colors duration-200 peer-focus:text-ink";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -43,15 +52,8 @@ export function ContactForm() {
     }
   }
 
-  // Flat inputs: a solid gray block with no border at rest, hardening into a
-  // white field with a 2px primary border on focus. No ring glow.
-  const inputClass =
-    "w-full rounded-md border-2 border-transparent bg-muted px-4 py-3 text-foreground placeholder:text-foreground-faint transition-colors duration-200 focus:border-primary focus:bg-background focus:outline-none";
-
-  const labelTextClass = "text-xs font-semibold uppercase tracking-wider text-foreground";
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+    <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-5" noValidate>
       {/* Honeypot field — hidden from users, catches bots. */}
       <div className="hidden" aria-hidden>
         <label htmlFor="company">Company</label>
@@ -59,10 +61,7 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="name" className={labelTextClass}>
-            Name
-          </label>
+        <div className="flex flex-col-reverse gap-1.5">
           <input
             id="name"
             name="name"
@@ -70,13 +69,13 @@ export function ContactForm() {
             required
             autoComplete="name"
             placeholder="Your name"
-            className={inputClass}
+            className={fieldClass}
           />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className={labelTextClass}>
-            Email
+          <label htmlFor="name" className={labelClass}>
+            Name
           </label>
+        </div>
+        <div className="flex flex-col-reverse gap-1.5">
           <input
             id="email"
             name="email"
@@ -84,56 +83,64 @@ export function ContactForm() {
             required
             autoComplete="email"
             placeholder="you@example.com"
-            className={inputClass}
+            className={fieldClass}
           />
+          <label htmlFor="email" className={labelClass}>
+            Email
+          </label>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="message" className={labelTextClass}>
-          Message
-        </label>
+      <div className="flex flex-col-reverse gap-1.5">
         <textarea
           id="message"
           name="message"
           required
-          rows={5}
+          rows={6}
           placeholder="Tell me about your project or opportunity…"
-          className={`${inputClass} resize-y`}
+          className={`${fieldClass} resize-y`}
         />
+        <label htmlFor="message" className={labelClass}>
+          Message
+        </label>
       </div>
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className={buttonClass({ className: "mt-1 w-full" })}
-      >
-        {status === "submitting" ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-            Sending…
-          </>
-        ) : (
-          <>
-            <Send className="h-4 w-4" strokeWidth={2.5} aria-hidden />
-            Send Message
-          </>
-        )}
-      </button>
-
-      <div aria-live="polite" role="status">
-        {status === "success" && (
-          <p className="flex items-center gap-3 rounded-md bg-secondary px-4 py-3 font-semibold text-ink">
-            <CheckCircle2 className="h-5 w-5 shrink-0" strokeWidth={2.5} aria-hidden />
-            {message}
-          </p>
-        )}
-        {status === "error" && (
-          <p className="flex items-center gap-3 rounded-md bg-ink px-4 py-3 font-semibold text-white">
-            <AlertCircle className="h-5 w-5 shrink-0" strokeWidth={2.5} aria-hidden />
-            {message}
-          </p>
-        )}
+      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div aria-live="polite" role="status" className="text-sm">
+          {status === "success" && (
+            <p className="flex items-center gap-2 text-ink">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" strokeWidth={2} aria-hidden />
+              {message}
+            </p>
+          )}
+          {status === "error" && (
+            <p className="flex items-center gap-2 text-accent-ink">
+              <AlertCircle className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+              {message}
+            </p>
+          )}
+        </div>
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className={buttonClass({ size: "md", className: "shrink-0 self-start sm:self-auto" })}
+        >
+          {status === "submitting" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              Sending…
+            </>
+          ) : (
+            <>
+              Send message
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 ease-out-quint group-hover/btn:translate-x-1"
+                strokeWidth={2}
+                aria-hidden
+              />
+            </>
+          )}
+        </button>
       </div>
     </form>
   );

@@ -5,6 +5,8 @@ export const experience: ExperienceItem[] = [
     role: "Freelance Full Stack Developer",
     organization: "Self-Employed",
     period: "June 2024 – February 2026",
+    start: "2024-06",
+    end: "2026-02",
     bullets: [
       "Developed AI-powered support systems for small businesses and clinics.",
       "Built and maintained web applications using PHP, JavaScript, and MySQL.",
@@ -17,6 +19,8 @@ export const experience: ExperienceItem[] = [
     organization:
       "Department of Environment and Natural Resources (DENR)",
     period: "December 2025 – April 2026",
+    start: "2025-12",
+    end: "2026-04",
     bullets: [
       "Worked with the Land Administration and Management System (LAMS).",
       "Improved document retrieval efficiency by 15%.",
