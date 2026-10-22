@@ -40,7 +40,7 @@ and from the panels themselves.
 | Route | What it shows |
 | --- | --- |
 | `/` | Overview: ID badge, intro, headline figures, now building, projects, stack chart, timeline, contact |
-| `/projects` | Searchable, filterable projects in a table or grid |
+| `/projects` | Searchable, filterable project cards |
 | `/projects/[slug]` | Case study: figures, chapters, details sidebar, table of contents |
 | `/experience` | Career timeline chart, roles and education |
 | `/stack` | Technology usage across projects, plus every skill by area |
@@ -63,7 +63,7 @@ The shell lives in [`src/components/shell/`](src/components/shell/) (`Sidebar`,
   jumps to Overview, Projects, Experience, Stack or Contact
 - Charts from real data: technology usage counted across projects, a career
   timeline from each role's dates, and Acadify's roadmap progress
-- Project search, status filter and table/grid views
+- Project cards with search and a status filter
 - Project images morph into the case study (React `<ViewTransition>`)
 - Light and dark themes with no flash on load; live local clock
 - Working contact form (server-side email) and one-click copy of the email

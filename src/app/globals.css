@@ -66,6 +66,9 @@
 /* `collapsed:` styles apply while the sidebar is folded to icons. */
 @custom-variant collapsed (:root[data-sidebar="collapsed"] &);
 
+/* `dark:` follows the theme attribute, not just the OS setting. */
+@custom-variant dark (:root[data-theme="dark"] &);
+
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-raised: var(--bg-raised);
