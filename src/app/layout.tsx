@@ -11,6 +11,7 @@ import { socialLinks } from "@/data/social";
 import { themeScript } from "@/lib/theme";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { Toaster } from "@/components/ui/Toaster";
+import { AskAI } from "@/components/ui/AskAI";
 
 // Geist sets everything — headings are the same family, heavier and tighter.
 // Geist Mono sets labels, indices and captions.
@@ -114,6 +115,7 @@ export default function RootLayout({
         <MobileTabBar />
         <CommandPalette />
         <Toaster />
+        <AskAI />
         <Shortcuts />
       </body>
     </html>

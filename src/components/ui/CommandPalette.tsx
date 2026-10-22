@@ -20,6 +20,7 @@ import {
   Moon,
   PanelLeft,
   Search,
+  Sparkles,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { navLinks } from "@/data/nav";
@@ -27,6 +28,7 @@ import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/siteConfig";
 import { socialLinks } from "@/data/social";
 import { toggleSidebar, toggleTheme } from "@/lib/theme";
+import { openAskAI } from "./AskAI";
 import { copyText } from "@/lib/clipboard";
 import { cn } from "@/lib/cn";
 import { ShortcutHint } from "./ShortcutHint";
@@ -88,6 +90,15 @@ export function CommandPalette() {
         icon: ArrowUpRight,
         run: () => router.push(`/projects/${p.slug}`),
       })),
+      {
+        id: "ask-ai",
+        group: "Actions",
+        label: "Ask AI about Princess",
+        hint: "G A",
+        keywords: "chat assistant question bot",
+        icon: Sparkles,
+        run: openAskAI,
+      },
       {
         id: "copy-email",
         group: "Actions",

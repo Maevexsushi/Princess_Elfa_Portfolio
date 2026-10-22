@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { navLinks } from "@/data/nav";
 import { toggleSidebar } from "@/lib/theme";
+import { openAskAI } from "@/components/ui/AskAI";
 
 /**
  * Keyboard navigation, in the style of the tools developers live in:
- * G then O / P / E / S / C jumps to a page, and [ folds the sidebar.
+ * G then O / P / E / S / C jumps to a page, G then A opens Ask AI, and
+ * [ folds the sidebar.
  * (⌘K and / belong to the command palette.)
  */
 export function Shortcuts() {
@@ -29,6 +31,11 @@ export function Shortcuts() {
       const key = e.key.toLowerCase();
       if (pendingG && Date.now() - pendingG < 1200) {
         pendingG = 0;
+        if (key === "a") {
+          e.preventDefault();
+          openAskAI();
+          return;
+        }
         const link = navLinks.find((l) => l.key === key);
         if (link) {
           e.preventDefault();

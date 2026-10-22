@@ -68,6 +68,11 @@ The shell lives in [`src/components/shell/`](src/components/shell/) (`Sidebar`,
 - Light and dark themes with no flash on load; live local clock
 - Working contact form (server-side email) and one-click copy of the email
 - SEO: per-page metadata, Open Graph/Twitter, `sitemap.xml`, `robots.txt`, JSON-LD
+- **Ask AI**: a chat assistant (floating button, ⌘K, or G then A) that answers
+  questions about Princess using only the portfolio's own data. Groq first,
+  Gemini as fallback; the profile is built from `src/data/` by
+  [`src/lib/ai/knowledge.ts`](src/lib/ai/knowledge.ts), and it declines
+  off-topic questions
 - Accessible: semantic landmarks, skip link, keyboard-first menu, visible focus
 
 ## Getting Started
@@ -96,6 +101,17 @@ The contact form (`/api/contact`) sends email through Gmail SMTP using an
 
 Without these variables the form returns a friendly error and asks the visitor
 to email directly.
+
+## Ask AI (environment variables)
+
+The assistant (`/api/ask`) needs at least one key in `.env.local` — and in
+Vercel → Project Settings → Environment Variables for production:
+
+```
+GROQ_API_TOKEN=...      # primary
+GEMINI_API_KEY=...      # fallback
+# optional: GROQ_MODEL (default openai/gpt-oss-120b), GEMINI_MODEL (default gemini-flash-latest)
+```
 
 ## Editing content
 
