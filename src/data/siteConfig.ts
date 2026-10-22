@@ -13,7 +13,9 @@ export const siteConfig = {
   timeZoneLabel: "PHT",
   email: "princessmaeelfa07@gmail.com",
   responseTime: "Within 24 hours",
-  resumeUrl: "/Princess_Elfa_RESUME.pdf",
+  resumeUrl: "/Princess_Elfa_Resume_updated.pdf",
+  // What a downloaded copy is saved as, whatever the file is called here.
+  resumeFileName: "Princess_Elfa_Resume.pdf",
   // Public site URL — update after deploying to Vercel.
   url: "https://princess-elfa-portfolio.vercel.app",
   // The one-sentence version, set large in the hero.

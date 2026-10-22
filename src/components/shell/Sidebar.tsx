@@ -160,7 +160,7 @@ export function Sidebar() {
           <ThemeToggle className="h-8 w-8 rounded-lg" />
           <a
             href={siteConfig.resumeUrl}
-            download
+            download={siteConfig.resumeFileName}
             aria-label="Download résumé"
             title="Download résumé"
             className={iconButton}

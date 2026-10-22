@@ -118,7 +118,7 @@ export function CommandPalette() {
         run: () => {
           const a = document.createElement("a");
           a.href = siteConfig.resumeUrl;
-          a.download = "";
+          a.download = siteConfig.resumeFileName;
           a.click();
         },
       },

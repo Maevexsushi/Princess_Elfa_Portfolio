@@ -1,4 +1,4 @@
-import { Briefcase, FolderKanban, LayoutGrid, Layers, Mail } from "lucide-react";
+import { Briefcase, FileText, FolderKanban, LayoutGrid, Layers, Mail } from "lucide-react";
 import type { NavIcon as NavIconKey } from "@/data/nav";
 
 const icons = {
@@ -6,6 +6,7 @@ const icons = {
   projects: FolderKanban,
   experience: Briefcase,
   stack: Layers,
+  resume: FileText,
   contact: Mail,
 } as const;
 

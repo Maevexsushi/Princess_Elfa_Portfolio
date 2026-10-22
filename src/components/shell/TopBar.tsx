@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, FileDown, Search } from "lucide-react";
+import { ChevronRight, FileText, Search } from "lucide-react";
 import { navLinks, isActive } from "@/data/nav";
 import { projects } from "@/data/projects";
 import { siteConfig } from "@/data/siteConfig";
@@ -69,14 +69,13 @@ export function TopBar() {
           <Search className="h-[18px] w-[18px]" strokeWidth={1.75} aria-hidden />
         </button>
         <ThemeToggle className="lg:hidden" />
-        <a
-          href={siteConfig.resumeUrl}
-          download
+        <Link
+          href="/resume"
           className={buttonClass({ variant: "secondary", size: "sm", className: "max-sm:hidden" })}
         >
-          <FileDown className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+          <FileText className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
           Résumé
-        </a>
+        </Link>
         <Link href="/contact" className={buttonClass({ size: "sm" })}>
           Get in touch
         </Link>

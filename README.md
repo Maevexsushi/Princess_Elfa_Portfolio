@@ -44,6 +44,7 @@ and from the panels themselves.
 | `/projects/[slug]` | Case study: figures, chapters, details sidebar, table of contents |
 | `/experience` | Career timeline chart, roles and education |
 | `/stack` | Technology usage across projects, plus every skill by area |
+| `/resume` | The résumé PDF drawn in the page with pdf.js (works on phones), with zoom and download |
 | `/contact` | Contact form and channels |
 
 The shell lives in [`src/components/shell/`](src/components/shell/) (`Sidebar`,

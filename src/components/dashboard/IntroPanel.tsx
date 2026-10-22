@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, FileDown, GraduationCap, MapPin } from "lucide-react";
+import { ArrowRight, FileText, GraduationCap, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { LocalTime } from "@/components/ui/LocalTime";
@@ -49,10 +49,10 @@ export function IntroPanel() {
             aria-hidden
           />
         </Link>
-        <a href={siteConfig.resumeUrl} download className={buttonClass({ variant: "secondary", size: "md" })}>
-          <FileDown className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+        <Link href="/resume" className={buttonClass({ variant: "secondary", size: "md" })}>
+          <FileText className="h-4 w-4" strokeWidth={1.75} aria-hidden />
           Résumé
-        </a>
+        </Link>
         <CopyEmailButton className="h-11 rounded-full px-4 text-sm font-medium text-ink-2 transition-colors hover:bg-bg-raised hover:text-ink" />
       </div>
     </section>

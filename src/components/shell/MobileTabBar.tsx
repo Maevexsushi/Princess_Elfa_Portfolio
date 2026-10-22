@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navLinks, isActive } from "@/data/nav";
+import { tabLinks, isActive } from "@/data/nav";
 import { cn } from "@/lib/cn";
 import { NavIcon } from "./NavIcon";
 
@@ -16,7 +16,7 @@ export function MobileTabBar() {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-surface/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden"
     >
       <ul className="mx-auto grid h-16 max-w-lg grid-cols-5">
-        {navLinks.map((link) => {
+        {tabLinks.map((link) => {
           const current = isActive(pathname, link.href);
           return (
             <li key={link.href}>
