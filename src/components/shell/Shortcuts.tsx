@@ -8,7 +8,7 @@ import { openAskAI } from "@/components/ui/AskAI";
 
 /**
  * Keyboard navigation, in the style of the tools developers live in:
- * G then O / P / E / S / C jumps to a page, G then A opens Ask AI, and
+ * G then O / P / E / S / U / C jumps to a page, G then A opens Ask AI, and
  * [ folds the sidebar.
  * (⌘K and / belong to the command palette.)
  */

@@ -1,11 +1,12 @@
 import { projects } from "@/data/projects";
 import { techUsage } from "@/lib/insights";
+import { SkillIcon, techIconKey } from "@/components/ui/SkillIcon";
 
 /**
  * How many of my projects each technology appears in — counted from the
  * projects list, so it can't drift from the work it describes.
  */
-export function StackUsage({ limit }: { limit?: number }) {
+export function StackUsage({ limit, withIcons = false }: { limit?: number; withIcons?: boolean }) {
   const usage = techUsage();
   const rows = limit ? usage.slice(0, limit) : usage;
   const total = projects.length;
@@ -16,10 +17,19 @@ export function StackUsage({ limit }: { limit?: number }) {
         {rows.map((t, i) => (
           <li
             key={t.name}
-            className="grid grid-cols-[minmax(0,8.5rem)_1fr_2.25rem] items-center gap-3 text-[13px]"
+            className={`grid items-center gap-3 text-[13px] ${
+              withIcons ? "grid-cols-[minmax(0,10rem)_1fr_2.25rem]" : "grid-cols-[minmax(0,8.5rem)_1fr_2.25rem]"
+            }`}
           >
-            <span className="truncate text-ink" title={t.name}>
-              {t.name}
+            <span className="flex min-w-0 items-center gap-2 text-ink" title={t.name}>
+              {withIcons && (
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                  {techIconKey(t.name) && (
+                    <SkillIcon name={techIconKey(t.name)!} branded className="h-3.5 w-3.5" />
+                  )}
+                </span>
+              )}
+              <span className="truncate">{t.name}</span>
             </span>
             <span
               className="relative h-2 overflow-hidden rounded-full bg-bg-raised"

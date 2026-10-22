@@ -208,8 +208,8 @@ export const projects: Project[] = [
     title: "Personal Portfolio Website",
     tagline: "Dashboard-style portfolio in Next.js 16",
     description:
-      "This site: a black-and-white dashboard on Next.js 16 — sidebar, widgets and charts drawn from my own data — with an ID badge you can grab and swing, a ⌘K command menu and keyboard navigation.",
-    image: "/portfolio_thumb.png",
+      "This site: a black-and-white dashboard on Next.js 16 — sidebar, widgets and charts drawn from my own data — with an ID badge you can grab and swing, a 3D model of my room, a ⌘K command menu and keyboard navigation.",
+    image: "/images/projects/portfolio_dashboard_thumb.png",
     featured: true,
     technologies: [
       "Next.js 16",
@@ -217,14 +217,14 @@ export const projects: Project[] = [
       "TypeScript",
       "Tailwind CSS v4",
       "View Transitions",
-      "Nodemailer",
+      "three.js",
       "Claude Code",
       "Windsurf",
     ],
     githubUrl: "https://github.com/Maevexsushi/Princess_Elfa_Portfolio",
     liveUrl: "#",
     screenshots: [
-      { src: "/portfolio_thumb.png", alt: "Portfolio overview dashboard" },
+      { src: "/images/projects/portfolio_dashboard_thumb.png", alt: "Portfolio overview dashboard" },
     ],
     caseStudy: {
       overview:
@@ -237,7 +237,7 @@ export const projects: Project[] = [
         "Fast, accessible and comfortable to read on any screen, from a phone up.",
         "Light and dark themes that follow the visitor's system and remember their choice.",
         "Quick ways to act: copy my email, download my résumé, or jump anywhere.",
-        "A working contact form that delivers straight to my inbox.",
+        "Every way to reach me in one place: email, LinkedIn, GitHub and the résumé.",
         "Strong SEO: metadata, sitemap, robots rules and structured data.",
       ],
       technicalChallenges: [
@@ -247,6 +247,7 @@ export const projects: Project[] = [
         "A collapsible sidebar whose state, like the theme, is applied before first paint, plus G-then-letter keyboard navigation in the style of developer tools.",
         "An ID badge on a lanyard that visitors can drag, swing and fling, built as a small Verlet physics simulation with no libraries: the strap is a chain of points, the card a rigid bar, and the loop sleeps when it comes to rest.",
         "Morphing project images from the work list into the case study with React's <ViewTransition> and Next.js navigation.",
+        "A 3D room in React Three Fiber that follows Philippine time and live weather, with 15 clickable objects — lazy-loaded so only the Setup page pays for three.js.",
         "Showing my local time and the right keyboard shortcut for each platform without hydration mismatches.",
       ],
       developmentProcess: [
@@ -255,7 +256,6 @@ export const projects: Project[] = [
         "Built the app shell: a collapsible sidebar on desktop and a tab bar on phones, with breadcrumbs and page routes for every section.",
         "Built typed widgets and charts over centralized content data, so every number on screen comes from one source.",
         "Added the interaction layer: command menu, keyboard shortcuts, project search and filters, toasts, theme switching and view transitions.",
-        "Wired a validated Nodemailer contact route with a honeypot field.",
         "Added SEO metadata, sitemap, robots rules and JSON-LD.",
       ],
       results: [

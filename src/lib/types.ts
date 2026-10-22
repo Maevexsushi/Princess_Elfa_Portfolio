@@ -9,6 +9,11 @@ export interface Skill {
   icon: string; // icon key resolved in SkillIcon
 }
 
+export interface MainStackItem extends Skill {
+  /** What it does in the stack, e.g. "Framework". */
+  role: string;
+}
+
 export interface SkillCategory {
   title: string;
   skills: Skill[];

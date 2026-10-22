@@ -8,11 +8,12 @@ export const navLinks = [
   { label: "Projects", href: "/projects", key: "p", icon: "projects" },
   { label: "Experience", href: "/experience", key: "e", icon: "experience" },
   { label: "Stack", href: "/stack", key: "s", icon: "stack" },
+  { label: "Setup", href: "/setup", key: "u", icon: "setup" },
   { label: "Résumé", href: "/resume", key: "r", icon: "resume", tab: false },
   { label: "Contact", href: "/contact", key: "c", icon: "contact" },
 ] as const;
 
-/** The pages in the phone tab bar; the résumé is reached from the top bar. */
+/** The pages in the phone tab bar — six fit; the résumé is reached from the top bar. */
 export const tabLinks = navLinks.filter((l) => !("tab" in l && l.tab === false));
 
 export type NavIcon = (typeof navLinks)[number]["icon"];

@@ -15,7 +15,7 @@ export function MobileTabBar() {
       aria-label="Main navigation"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-rule bg-surface/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden"
     >
-      <ul className="mx-auto grid h-16 max-w-lg grid-cols-5">
+      <ul className="mx-auto grid h-16 max-w-lg grid-cols-6">
         {tabLinks.map((link) => {
           const current = isActive(pathname, link.href);
           return (

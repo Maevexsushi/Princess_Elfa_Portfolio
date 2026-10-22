@@ -2,7 +2,7 @@ import { siteConfig } from "@/data/siteConfig";
 import { projects } from "@/data/projects";
 import { experience } from "@/data/experience";
 import { education } from "@/data/education";
-import { skillCategories } from "@/data/skills";
+import { mainStack, skillCategories } from "@/data/skills";
 import { stats } from "@/data/stats";
 import { socialLinks } from "@/data/social";
 
@@ -25,7 +25,7 @@ const PROJECT_ALIASES: Record<string, string[]> = {
   dermasculpt: ["dermasculpt", "derma", "dermatology", "clinic", "thesis"],
   acadify: ["acadify", "pawgress", "study companion", "aki"],
   "portfolio-analyzer": ["portfolio analyzer", "analyzer", "hiring reviewer", "resume checker"],
-  "personal-portfolio": ["this site", "this website", "this portfolio", "portfolio website", "id badge", "dashboard"],
+  "personal-portfolio": ["this site", "this website", "this portfolio", "portfolio website", "3d room", "the room", "id badge", "dashboard"],
 };
 
 /** Projects the conversation mentions, from the visitor's recent messages. */
@@ -60,6 +60,9 @@ function buildKnowledge(focus: string[]) {
     "",
     "# Headline figures",
     ...list(stats.map((s) => `${s.value} — ${s.label} (${s.source})`)),
+    "",
+    "# Main stack (what she reaches for first, in order)",
+    ...list(mainStack.map((m) => `${m.name} — ${m.role}`)),
     "",
     "# Skills by area",
     ...skillCategories.map((c) => `${c.title}: ${c.skills.map((s) => s.name).join(", ")}`),
@@ -110,7 +113,7 @@ function buildKnowledge(focus: string[]) {
   add(
     "",
     "# This website",
-    "Pages: Overview (/), Projects (/projects), Experience (/experience), Stack (/stack), Contact (/contact).",
+    "Pages: Overview (/), Projects (/projects), Experience (/experience), Stack (/stack), Setup — a 3D model of her room (/setup), Contact (/contact).",
   );
   return lines.join("\n");
 }

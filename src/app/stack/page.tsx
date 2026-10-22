@@ -5,6 +5,7 @@ import { Panel, riseDelay } from "@/components/ui/Panel";
 import { SkillIcon } from "@/components/ui/SkillIcon";
 import { PageHeader } from "@/components/shell/PageHeader";
 import { StackUsage } from "@/components/dashboard/StackUsage";
+import { MainStackTiles } from "@/components/ui/MainStack";
 
 export const metadata: Metadata = {
   title: "Stack",
@@ -22,6 +23,16 @@ export default function StackPage() {
         description={`${skillCount} skills across ${skillCategories.length} areas, and ${techUsage().length} technologies used in shipped and in-progress projects.`}
       />
 
+      <Panel
+        title="Main stack"
+        labelledBy="main-stack-heading"
+        action={<span className="eyebrow text-ink-3">What I reach for first</span>}
+        className="rise"
+        style={riseDelay(40)}
+      >
+        <MainStackTiles />
+      </Panel>
+
       <div className="grid gap-3 lg:grid-cols-12">
         <Panel
           title="Used in projects"
@@ -29,7 +40,7 @@ export default function StackPage() {
           className="rise lg:col-span-5"
           style={riseDelay(60)}
         >
-          <StackUsage />
+          <StackUsage withIcons />
         </Panel>
 
         <div className="grid content-start gap-3 sm:grid-cols-2 lg:col-span-7">
@@ -44,9 +55,9 @@ export default function StackPage() {
             >
               <ul className="flex flex-col gap-2.5">
                 {category.skills.map((skill) => (
-                  <li key={skill.name} className="flex items-center gap-2.5 text-[13px] text-ink">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-rule bg-bg text-ink-2">
-                      <SkillIcon name={skill.icon} className="h-3.5 w-3.5" />
+                  <li key={skill.name} className="flex items-center gap-3 text-[13px] text-ink">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-rule bg-bg text-ink">
+                      <SkillIcon name={skill.icon} branded className="h-[18px] w-[18px]" />
                     </span>
                     {skill.name}
                   </li>

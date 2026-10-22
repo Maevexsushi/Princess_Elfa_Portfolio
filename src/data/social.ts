@@ -1,7 +1,6 @@
 import type { SocialLink } from "@/lib/types";
 import { siteConfig } from "./siteConfig";
 
-// Placeholder URLs — swap in the real profiles when available.
 export const socialLinks: SocialLink[] = [
   {
     label: "GitHub",
@@ -10,7 +9,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/princessmae",
+    href: "https://www.linkedin.com/in/princess-mae-elfa-062540416",
     icon: "linkedin",
   },
   {

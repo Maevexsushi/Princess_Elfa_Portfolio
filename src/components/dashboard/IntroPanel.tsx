@@ -5,6 +5,7 @@ import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { LocalTime } from "@/components/ui/LocalTime";
 import { buttonClass } from "@/components/ui/button";
 import { riseDelay } from "@/components/ui/Panel";
+import { MainStackChips } from "@/components/ui/MainStack";
 
 export function IntroPanel() {
   return (
@@ -39,6 +40,11 @@ export function IntroPanel() {
           BS Information Technology, Cum Laude 2026
         </li>
       </ul>
+
+      <div className="flex flex-col gap-2">
+        <p className="eyebrow text-ink-3">Main stack</p>
+        <MainStackChips />
+      </div>
 
       <div className="mt-auto flex flex-wrap items-center gap-2">
         <Link href="/projects" className={buttonClass({ size: "md" })}>

@@ -1,4 +1,14 @@
-import type { SkillCategory } from "@/lib/types";
+import type { MainStackItem, SkillCategory } from "@/lib/types";
+
+/** The stack I reach for first, in order. Shown on the overview and the Stack page. */
+export const mainStack: MainStackItem[] = [
+  { name: "React", icon: "react", role: "UI library" },
+  { name: "Next.js", icon: "nextjs", role: "Framework" },
+  { name: "TypeScript", icon: "typescript", role: "Language" },
+  { name: "Supabase", icon: "supabase", role: "Database & auth" },
+  { name: "Vercel", icon: "vercel", role: "Hosting" },
+  { name: "Claude Code", icon: "claude", role: "AI pair programmer" },
+];
 
 // `icon` maps to a key resolved in the SkillIcon component. Unknown keys
 // gracefully fall back to a generic badge, so new skills are safe to add.
@@ -15,6 +25,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Frontend Development",
     skills: [
+      { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },
       { name: "HTML", icon: "html" },
       { name: "CSS", icon: "css" },
@@ -26,6 +37,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "PHP", icon: "php" },
       { name: "MySQL", icon: "mysql" },
+      { name: "Supabase", icon: "supabase" },
       { name: "REST APIs", icon: "api" },
     ],
   },

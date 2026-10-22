@@ -57,7 +57,7 @@ export function ContactPanelBody() {
         href="/contact"
         className="group mt-auto inline-flex items-center justify-between rounded-lg bg-ink px-3.5 py-2.5 text-[13px] font-medium text-bg transition-colors hover:bg-ink/85"
       >
-        Send a message
+        All contact details
         <ArrowRight
           className="h-4 w-4 transition-transform duration-300 ease-out-quint group-hover:translate-x-0.5"
           strokeWidth={2}

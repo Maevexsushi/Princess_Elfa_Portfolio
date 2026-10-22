@@ -16,7 +16,7 @@ export function openAskAI() {
 type Message = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "What technologies does she use?",
+  "What's Princess's main stack?",
   "Tell me about Acadify",
   "What did she do at DENR?",
   "Is she open to work?",
@@ -29,7 +29,7 @@ const MAX_CHARS = 600;
    URLs and the email address. Nothing else is interpreted.
 --------------------------------------------------------------------------- */
 
-const TOKEN = /(\[[^\]]+\]\(https?:\/\/[^\s)]+\)|\*\*[^*]+\*\*|https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+|(?<![\w/])\/(?:projects(?:\/[a-z0-9-]+)?|experience|stack|contact)\b)/g;
+const TOKEN = /(\[[^\]]+\]\(https?:\/\/[^\s)]+\)|\*\*[^*]+\*\*|https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+|(?<![\w/])\/(?:projects(?:\/[a-z0-9-]+)?|experience|stack|setup|contact)\b)/g;
 
 function inline(text: string): ReactNode[] {
   return text.split(TOKEN).map((part, i) => {

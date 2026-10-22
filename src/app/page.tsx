@@ -8,11 +8,13 @@ import { ProjectsTable } from "@/components/dashboard/ProjectsTable";
 import { StackUsage } from "@/components/dashboard/StackUsage";
 import { Timeline } from "@/components/dashboard/Timeline";
 import { ContactPanelBody } from "@/components/dashboard/ContactPanel";
+import { SetupPreview } from "@/components/dashboard/SetupPreview";
 
 /**
  * The overview: everything at a glance, each panel opening onto a full page.
  * Left, the ID badge; right, who I am, the headline figures and what I'm
- * building now; below, the work, the stack, the timeline and how to reach me.
+ * building now; below, the work, the stack, the timeline, how to reach me,
+ * and a way into the 3D room.
  */
 export default function Overview() {
   return (
@@ -63,6 +65,8 @@ export default function Overview() {
       >
         <ContactPanelBody />
       </Panel>
+
+      <SetupPreview className="lg:col-span-12" />
     </div>
   );
 }
